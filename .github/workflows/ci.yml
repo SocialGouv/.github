@@ -1,5 +1,9 @@
 name: CI
 
+on:
+  - push
+  - pull_request
+
 jobs:
   Quality:
     runs-on: ubuntu-latest

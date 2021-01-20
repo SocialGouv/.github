@@ -1,0 +1,19 @@
+name: CI
+
+jobs:
+  Quality:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Set up Node.js 15.x
+        uses: actions/setup-node@v2-beta
+        with:
+          node-version: 15.x
+
+      - uses: actions/checkout@v2
+
+      - name: Installing
+        run: yarn --frozen-lockfile --link-duplicates --perfer-offline
+
+      - name: Lint
+        run: yarn lint

@@ -1,0 +1,48 @@
+#
+
+name: "[Boto] Act if @SocialGroovyBot is called"
+
+description: "Checks PR Comments and react to @SocialGroovyBot calls"
+
+runs:
+  using: "composite"
+
+  if: ${{ github.event.issue.pull_request }}
+
+  runs-on: ubuntu-latest
+
+  outputs:
+    BOOL_TRIGGERED: ${{ steps.prcomm.outputs.BOOL_TRIGGERED }}
+    TRAILING_TOKEN : ${{ steps.prcomm.outputs.TRAILING_TOKEN  }}
+    TRAILING_LINE : ${{ steps.prcomm.outputs.TRAILING_LINE  }}
+    RUN_URL : ${{ steps.vars.outputs.run-url  }}
+
+  steps:
+    - name: Listen for PR Comments
+      id: prcomm
+      uses: machine-learning-apps/actions-chatops@master
+      with:
+        TRIGGER_PHRASE: "@SocialGroovyBot"
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Create URL to the run output
+      id: vars
+      run: echo ::set-output name=run-url::https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID
+
+    - name: Add reaction
+      if: steps.prcomm.outputs.BOOL_TRIGGERED == 'True'
+      uses: peter-evans/create-or-update-comment@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        comment-id: ${{ github.event.comment.id }}
+        reaction-type: eyes
+
+    - name: Create comment
+      if: steps.prcomm.outputs.BOOL_TRIGGERED == 'True'
+      uses: peter-evans/create-or-update-comment@v1
+      with:
+        issue-number: ${{ github.event.issue.number }}
+        comment-author: 'SocialGroovyBot'
+        body: |
+          [Running `${{ steps.prcomm.outputs.TRAILING_LINE }}`](${{ steps.vars.outputs.run-url }})

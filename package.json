@@ -4,7 +4,7 @@
   "description": ".github",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "diff .github/workflows/boto.yml workflow-templates/boto.yml",
     "lint": "prettier -c ."
   },
   "repository": {

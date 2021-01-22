@@ -1,17 +1,14 @@
-#
-
-name: "[Boto] Act if @SocialGroovyBot is called"
-
-description: "Checks PR Comments and react to @SocialGroovyBot calls"
-
+name: 'Init CI'
+description: 'Boostrap repo for testing'
+inputs:
+  node:
+    default: "15.x"
+    description: 'Node.js version'
+    required: false
 runs:
   using: "composite"
-
   steps:
-    - name: Listen to PR Comments
-      id: prcomm
-      uses: machine-learning-apps/actions-chatops@master
+    - name: Use Node.js ${{ inputs.node }}
+      uses: actions/setup-node@v1
       with:
-        TRIGGER_PHRASE: "@SocialGroovyBot"
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        node-version: ${{ inputs.node }}

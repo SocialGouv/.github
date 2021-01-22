@@ -8,6 +8,10 @@ runs:
   using: "composite"
 
   steps:
-    - shell: bash
-      name: Listen for PR Comments
-      run: "echo actions"
+    - name: Listen for PR Comments
+      id: prcomm
+      uses: machine-learning-apps/actions-chatops@master
+      with:
+        TRIGGER_PHRASE: "@SocialGroovyBot"
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

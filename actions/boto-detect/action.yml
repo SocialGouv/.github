@@ -8,5 +8,6 @@ runs:
   using: "composite"
 
   steps:
-    - name: Listen for PR Comments
+    - shell: bash
+      name: Listen for PR Comments
       run: "echo actions"

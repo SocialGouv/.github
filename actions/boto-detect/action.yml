@@ -8,7 +8,7 @@ runs:
   using: "composite"
 
   steps:
-    - name: Listen for PR Comments
+    - name: Listen to PR Comments
       id: prcomm
       uses: machine-learning-apps/actions-chatops@master
       with:

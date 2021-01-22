@@ -5,10 +5,6 @@ name: "[Boto] Act if @SocialGroovyBot is called"
 description: "Checks PR Comments and react to @SocialGroovyBot calls"
 
 outputs:
-  log:
-    description: "Name of tests log file"
-    value: ${{ steps.tests.outputs.log }}
-outputs:
   BOOL_TRIGGERED:
     description: "Are we triggering the thing"
     value: ${{ steps.prcomm.outputs.BOOL_TRIGGERED }}

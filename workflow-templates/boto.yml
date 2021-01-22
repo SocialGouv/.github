@@ -17,7 +17,7 @@ jobs:
       RUN_COMMENT_ID : ${{ steps.runcomm.outputs.comment-id  }}
 
     steps:
-      - uses: SocialGouv/.github/actions/boto-detect
+      - uses: SocialGouv/.github/actions/boto-detect@master
 
   Yarn:
     needs:

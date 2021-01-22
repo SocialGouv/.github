@@ -7,10 +7,6 @@ description: "Checks PR Comments and react to @SocialGroovyBot calls"
 runs:
   using: "composite"
 
-  if: ${{ github.event.issue.pull_request }}
-
-  runs-on: ubuntu-latest
-
   outputs:
     BOOL_TRIGGERED: ${{ steps.prcomm.outputs.BOOL_TRIGGERED }}
     TRAILING_TOKEN : ${{ steps.prcomm.outputs.TRAILING_TOKEN  }}

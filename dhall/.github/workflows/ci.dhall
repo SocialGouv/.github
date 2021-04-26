@@ -23,11 +23,11 @@ in  GithubActions.Workflow::{
                 ''
             , SocailGouvSteps.dhall.`6.0.0-beta.3`
                 ''
-                  find . -type f -name '*.dhall'
+                  find * -type f -name '*.dhall'
                 ''
             , SocailGouvSteps.dhall.`6.0.0-beta.3`
                 ''
-                  find . -type f -name '*.dhall' | sort -u | while read -r fpath; do
+                  find * -type f -name '*.dhall' | sort -u | while read -r fpath; do
                     dhall lint --inplace "''${fpath}" --check
                   done
                 ''

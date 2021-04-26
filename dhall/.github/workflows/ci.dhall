@@ -13,7 +13,11 @@ in  GithubActions.Workflow::{
           , runs-on = GithubActions.RunsOn.Type.ubuntu-latest
           , steps =
             [ GithubActions.steps.actions/checkout
-            , setup-dhall.`v4.2.0` setup-dhall.Input::{=}
+            , setup-dhall.`v4.2.0`
+                setup-dhall.Input::{
+                , github_token = Some "\${{ github.token }}"
+                , version = Some "1.38.1"
+                }
             , GithubActions.Step::{ run = Some "make" }
             , GithubActions.Step::{
               , run = Some "git diff --color=always --exit-code"

@@ -1,5 +1,6 @@
 { container-structure-test =
     ./steps/container-structure-test.dhall sha256:39e1bda1b6947c0e4035dd08e5b2a147de4b96f18ea251213db9edd7018dc098
+, dhall = ./steps/dhall.dhall
 , docker-meta =
     ./steps/docker-meta.dhall sha256:eb33151d23c230a302df1e1c3e885af23d5715558e8d9e7b215aa35eeac61f0e
 , docker-buildx =

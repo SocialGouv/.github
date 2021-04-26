@@ -6,13 +6,13 @@
 .PHONY: Makefile all assembly_line
 all: assembly_line
 
-# #
+#
 
 # Make does not offer a recursive wildcard function, so here's one:
 # From https://stackoverflow.com/questions/3774568/makefile-issue-smart-way-to-scan-directory-tree-for-c-files
 rwildcard=$(wildcard $1$2) $(foreach d,$(wildcard $1*),$(call rwildcard,$d/,$2))
 
-# # #
+#
 
 define __dhall_resolve_immediate_dependencies
 $(shell \
@@ -70,12 +70,13 @@ $(call hash_path,$(1)) : $(1) $(call hash_path,$(call get_dependencies,$(1)))
 	$(DHALL) hash --file $$< > $$@
 endef
 
-$(foreach file,$(ASSEMBLY_LINE_SRC),$(eval $(call make_assembly_targets,$(file))))
+$(foreach file, $(ASSEMBLY_LINE_SRC),$(eval $(call make_assembly_targets,$(file))))
+$(eval $(call make_assembly_targets,dhall/.github/workflows/ci.dhall))
 
 #
 #
 #
 
-.github/workflows/dhall.workflows.yaml: dhall/.github/workflows/ci.dhall $(CACHE_DIR)/hash/.github/workflows/ci.hash
-	$@mkdir -p $$(shell dirname "$$@")
-	$(DHALL)-to-yaml --file $$< --output $$@
+.github/workflows/dhall.workflows.yaml: dhall/.github/workflows/ci.dhall $(CACHE_DIR)/hash/dhall/.github/workflows/ci.hash
+	@mkdir -p $(shell dirname "$@")
+	$(DHALL)-to-yaml --file $< --output $@

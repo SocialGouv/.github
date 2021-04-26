@@ -7,6 +7,7 @@ jobs:
       - uses: "dhall-lang/setup-dhall@35fa9f606036a9b7138bcbc4d519021fdda7bd5e"
         with: {}
       - run: make
+      - run: git diff --color=always --exit-code
 name: Dhall
 on:
   push: {}

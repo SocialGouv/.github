@@ -15,6 +15,9 @@ in  GithubActions.Workflow::{
             [ GithubActions.steps.actions/checkout
             , setup-dhall.`v4.2.0` setup-dhall.Input::{=}
             , GithubActions.Step::{ run = Some "make" }
+            , GithubActions.Step::{
+              , run = Some "git diff --color=always --exit-code"
+              }
             ]
           }
         }

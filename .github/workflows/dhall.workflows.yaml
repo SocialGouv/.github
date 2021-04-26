@@ -3,6 +3,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: "actions/checkout@v2"
+      - uses: "docker://ghcr.io/socialgouv/docker/dhall:6.0.0-beta.3@sha256:8c995787303a6d8c9c38d2abe1122e25ddd3b7e26111fc421cc0bd881679efb4"
+        with:
+          args: |2
+              find . -type f -name '*.dhall' | sort -u | while read -r fpath; do
+                dhall lint "${fpath}"
+              done
 name: Dhall
 on:
   push: {}

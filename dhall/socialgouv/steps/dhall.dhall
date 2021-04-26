@@ -6,7 +6,6 @@ let socialgouv/dhall
     = λ(ref : Text) →
       λ(args : Text) →
         GithubActions.Step::{
-        , name = Some args
         , uses = Some "docker://ghcr.io/socialgouv/docker/dhall:${ref}"
         , `with` = Some (toMap { args })
         }
@@ -15,7 +14,6 @@ let __test__foo =
         assert
       :   socialgouv/dhall "vX.Y.Z" "dhall freeze --inplace"
         ≡ GithubActions.Step::{
-          , name = Some "dhall freeze --inplace"
           , uses = Some "docker://ghcr.io/socialgouv/docker/dhall:vX.Y.Z"
           , `with` = Some
             [ { mapKey = "args", mapValue = "dhall freeze --inplace" } ]

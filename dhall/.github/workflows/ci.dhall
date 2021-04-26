@@ -15,7 +15,7 @@ in  GithubActions.Workflow::{
             , SocailGouvSteps.dhall.`6.0.0-beta.3`
                 ''
                   find . -type f -name '*.dhall' | sort -u | while read -r fpath; do
-                    dhall lint "''${fpath}"
+                    dhall lint --inplace ''${fpath} --check
                   done
                 ''
             ]

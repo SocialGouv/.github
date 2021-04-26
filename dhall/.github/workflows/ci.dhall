@@ -19,11 +19,11 @@ in  GithubActions.Workflow::{
                 ''
             , SocailGouvSteps.dhall.`6.0.0-beta.3`
                 ''
-                  ls -al
+                  ls -al dhall
                 ''
             , SocailGouvSteps.dhall.`6.0.0-beta.3`
                 ''
-                  find * -type f -name '*.dhall'
+                  find dhall -type f -name '*.dhall'
                 ''
             , SocailGouvSteps.dhall.`6.0.0-beta.3`
                 ''

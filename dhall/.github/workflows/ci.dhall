@@ -9,9 +9,14 @@ in  GithubActions.Workflow::{
     , on = GithubActions.On::{ push = Some GithubActions.Push::{=} }
     , jobs = toMap
         { ci = GithubActions.Job::{
+          , name = Some "Quality"
           , runs-on = GithubActions.RunsOn.Type.ubuntu-latest
           , steps =
             [ GithubActions.steps.actions/checkout
+            , SocailGouvSteps.dhall.`6.0.0-beta.3`
+                ''
+                  ls
+                ''
             , SocailGouvSteps.dhall.`6.0.0-beta.3`
                 ''
                   find . -type f -name '*.dhall'

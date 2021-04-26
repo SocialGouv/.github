@@ -4,24 +4,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: "actions/checkout@v2"
-      - uses: "docker://ghcr.io/socialgouv/docker/dhall:6.0.0-beta.3@sha256:8c995787303a6d8c9c38d2abe1122e25ddd3b7e26111fc421cc0bd881679efb4"
-        with:
-          args: |2
-              ls
-      - uses: "docker://ghcr.io/socialgouv/docker/dhall:6.0.0-beta.3@sha256:8c995787303a6d8c9c38d2abe1122e25ddd3b7e26111fc421cc0bd881679efb4"
-        with:
-          args: |2
-              ls -al dhall
-      - uses: "docker://ghcr.io/socialgouv/docker/dhall:6.0.0-beta.3@sha256:8c995787303a6d8c9c38d2abe1122e25ddd3b7e26111fc421cc0bd881679efb4"
-        with:
-          args: |2
-              find dhall -type f -name '*.dhall'
-      - uses: "docker://ghcr.io/socialgouv/docker/dhall:6.0.0-beta.3@sha256:8c995787303a6d8c9c38d2abe1122e25ddd3b7e26111fc421cc0bd881679efb4"
-        with:
-          args: |2
-              find * -type f -name '*.dhall' | sort -u | while read -r fpath; do
-                dhall lint --inplace "${fpath}" --check
-              done
+      - uses: "dhall-lang/setup-dhall@35fa9f606036a9b7138bcbc4d519021fdda7bd5e"
+        with: {}
+      - run: |2
+            find * -type f -name '*.dhall' | sort -u | while read -r fpath; do
+              dhall lint --inplace "${fpath}" --check
+            done
 name: Dhall
 on:
   push: {}

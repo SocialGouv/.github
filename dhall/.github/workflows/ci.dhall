@@ -1,8 +1,8 @@
 let GithubActions =
-      https://raw.githubusercontent.com/regadas/github-actions-dhall/master/package.dhall sha256:327d499ebf1ec63e5c3b0b0d5285b78a07be4ad1a941556eb35f67547004545f
+      ../../github-actions/package.dhall sha256:327d499ebf1ec63e5c3b0b0d5285b78a07be4ad1a941556eb35f67547004545f
 
-let SocailGouvSteps =
-      ../../socialgouv/steps.dhall sha256:296cbd0cd099ceb3120df95ac57d3fa9f26cf69536a1b70eedf20a449a6e9db6
+let setup-dhall =
+      ../../steps/dhall-lang/setup-dhall/package.dhall sha256:2bcd97c0d170aecede86ef3294018eb0f36a87a41d0503ec950ce7112967f8b0
 
 in  GithubActions.Workflow::{
     , name = "Dhall"
@@ -13,24 +13,15 @@ in  GithubActions.Workflow::{
           , runs-on = GithubActions.RunsOn.Type.ubuntu-latest
           , steps =
             [ GithubActions.steps.actions/checkout
-            , SocailGouvSteps.dhall.`6.0.0-beta.3`
-                ''
-                  ls
-                ''
-            , SocailGouvSteps.dhall.`6.0.0-beta.3`
-                ''
-                  ls -al dhall
-                ''
-            , SocailGouvSteps.dhall.`6.0.0-beta.3`
-                ''
-                  find dhall -type f -name '*.dhall'
-                ''
-            , SocailGouvSteps.dhall.`6.0.0-beta.3`
-                ''
-                  find * -type f -name '*.dhall' | sort -u | while read -r fpath; do
-                    dhall lint --inplace "''${fpath}" --check
-                  done
-                ''
+            , setup-dhall.`v4.2.0` setup-dhall.Input::{=}
+            , GithubActions.Step::{
+              , run = Some
+                  ''
+                    find * -type f -name '*.dhall' | sort -u | while read -r fpath; do
+                      dhall lint --inplace "''${fpath}" --check
+                    done
+                  ''
+              }
             ]
           }
         }

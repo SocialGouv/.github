@@ -14,14 +14,7 @@ in  GithubActions.Workflow::{
           , steps =
             [ GithubActions.steps.actions/checkout
             , setup-dhall.`v4.2.0` setup-dhall.Input::{=}
-            , GithubActions.Step::{
-              , run = Some
-                  ''
-                    find * -type f -name '*.dhall' | sort -u | while read -r fpath; do
-                      dhall lint --inplace "''${fpath}" --check
-                    done
-                  ''
-              }
+            , GithubActions.Step::{ run = Some "make" }
             ]
           }
         }

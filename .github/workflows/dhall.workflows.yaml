@@ -6,10 +6,7 @@ jobs:
       - uses: "actions/checkout@v2"
       - uses: "dhall-lang/setup-dhall@35fa9f606036a9b7138bcbc4d519021fdda7bd5e"
         with: {}
-      - run: |2
-            find * -type f -name '*.dhall' | sort -u | while read -r fpath; do
-              dhall lint --inplace "${fpath}" --check
-            done
+      - run: make
 name: Dhall
 on:
   push: {}

@@ -1,7 +1,7 @@
 {-
-This dhall input is mapping a fixed version of the crazy-max/ghaction-docker-meta
-https://github.com/crazy-max/ghaction-docker-meta/tree/v2.3.0
-commit/2e1a5c7fa42123697f82d479b551a1bbdb1bef88
+This dhall input is mapping a fixed version of the aquasecurity/trivy-action
+https://github.com/aquasecurity/trivy-action/tree/0.0.14
+commit/b38389f8efef9798810fe0c5b5096ac198cffd54
 -}
 let Input/Required = { image-ref : Text }
 

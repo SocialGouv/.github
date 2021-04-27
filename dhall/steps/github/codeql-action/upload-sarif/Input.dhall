@@ -1,27 +1,42 @@
 {-
-This dhall input is mapping a fixed version of the crazy-max/ghaction-docker-meta
-https://github.com/crazy-max/ghaction-docker-meta/tree/v2.3.0
-commit/2e1a5c7fa42123697f82d479b551a1bbdb1bef88
+This dhall input is mapping a fixed version of the github/codeql-action
+https://github.com/github/codeql-action/tree/codeql-bundle-20210421/upload-sarif
+commit/a3a8231e64d3db0e7da0f3b56b9521dcccdfe412
 -}
-let Input/Optional = { github_token : Optional Text, version : Optional Text }
+let Input/Optional =
+      { checkout_path : Optional Text
+      , matrix : Optional Text
+      , sarif_file : Optional Text
+      , token : Optional Text
+      }
 
-let Input/default = { github_token = None Text, version = None Text }
+let Input/default =
+      { checkout_path = None Text
+      , matrix = None Text
+      , sarif_file = None Text
+      , token = None Text
+      }
 
 let Input/Type = Input/Optional
 
 let Input = { Type = Input/Type, default = Input/default }
 
 let __test__basic_input =
-      assert : Input::{=} === { github_token = None Text, version = None Text }
+        assert
+      :     Input::{=}
+        ===  { checkout_path = None Text
+             , matrix = None Text
+             , sarif_file = None Text
+             , token = None Text
+             }
 
 let __test__semver_input =
         assert
-      :     Input::{
-            , github_token = Some "\${{ github.token }}"
-            , version = Some "vX.Y.Z"
-            }
-        ===  { github_token = Some "\${{ github.token }}"
-             , version = Some "vX.Y.Z"
+      :     Input::{ sarif_file = Some "trivy-results.sarif" }
+        ===  { checkout_path = None Text
+             , matrix = None Text
+             , sarif_file = Some "trivy-results.sarif"
+             , token = None Text
              }
 
 in  Input

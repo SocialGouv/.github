@@ -2,7 +2,7 @@ let GithubActions =
       ../../../github-actions/package.dhall sha256:327d499ebf1ec63e5c3b0b0d5285b78a07be4ad1a941556eb35f67547004545f
 
 let Input =
-      ./Input.dhall sha256:404042a94af2e74f1ac166cc9c5193c6a92360adc5a08ea01dcb164b9fb7dd10
+      ./Input.dhall sha256:7a1d0cd9d9be38b5c0034538563fc6abf357229ea4c743d836ce76c0d78319dd
 
 let utils =
       ../../utils.dhall sha256:52b53ac4f7bfc0ac42b2147a16166eea9b4ed92ab303c1e6ba255c450747d3da

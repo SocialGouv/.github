@@ -12,6 +12,7 @@ let Input/Optional =
       , ignore-unfixed : Optional Text
       , input : Optional Text
       , output : Optional Text
+      , scan-ref : Optional Text
       , scan-type : Optional Text
       , severity : Optional Text
       , skip-dirs : Optional Text
@@ -27,6 +28,7 @@ let Input/default =
       , ignore-unfixed = None Text
       , input = None Text
       , output = None Text
+      , scan-ref = None Text
       , scan-type = None Text
       , severity = None Text
       , skip-dirs = None Text
@@ -51,6 +53,7 @@ let __test__basic_input =
           , image-ref = "docker.io/my-organization/my-app:\${{ github.sha }}"
           , input = None Text
           , output = None Text
+          , scan-ref = None Text
           , scan-type = None Text
           , severity = None Text
           , skip-dirs = None Text
@@ -72,6 +75,7 @@ let __test__semver_input =
           , image-ref = "docker.io/my-organization/my-app:\${{ github.sha }}"
           , input = None Text
           , output = None Text
+          , scan-ref = None Text
           , scan-type = None Text
           , severity = None Text
           , skip-dirs = None Text

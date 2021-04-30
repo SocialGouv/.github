@@ -54,6 +54,7 @@ jobs:
           author_name: ${{ secrets.SOCIALGROOVYBOT_NAME }}
           branch: ${{ steps.comment.outputs.branch }}
           message: "chore(:robot:): dhall freezering"
+          add: "*.dhall"
   workflows_maker:
     name: Make the workflows
     runs-on: ubuntu-latest

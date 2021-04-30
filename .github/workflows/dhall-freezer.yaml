@@ -12,9 +12,6 @@ jobs:
           token: ${{ secrets.SOCIALGROOVYBOT_BOTO_PAT }}
           branch: ${{ steps.comment.outputs.branch }}
       - uses: "./actions/dhall-freezer"
-      - name: Status
-        run: |
-          git status
       - uses: EndBug/add-and-commit@v5
         env:
           GITHUB_TOKEN: ${{ secrets.SOCIALGROOVYBOT_BOTO_PAT }}

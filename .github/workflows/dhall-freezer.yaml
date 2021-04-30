@@ -1,6 +1,14 @@
 name: Dhall freezer
 on:
-  push: {}
+  workflow_dispatch:
+  push:
+    paths:
+      - "**/*.dhall"
+      - "**/*.dhall"
+  pull_request:
+    paths:
+      - "**/*.dhall"
+      - "**/*.dhall"
 jobs:
   freezer:
     name: Freeze all .dhall files and commit changes

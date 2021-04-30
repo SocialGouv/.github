@@ -13,7 +13,7 @@ on:
       - "**/*.dhall"
 jobs:
   lint:
-    name: Make the workflows
+    name: Lint
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -46,3 +46,11 @@ jobs:
           xargs -0 -i -t sh -c '
             dhall-to-yaml --file {} --output .github/workflows/$(basename {} .dhall).yaml
           '
+      - uses: EndBug/add-and-commit@v5
+        env:
+          GITHUB_TOKEN: ${{ secrets.SOCIALGROOVYBOT_BOTO_PAT }}
+        with:
+          author_email: ${{ secrets.SOCIALGROOVYBOT_EMAIL }}
+          author_name: ${{ secrets.SOCIALGROOVYBOT_NAME }}
+          branch: ${{ steps.comment.outputs.branch }}
+          message: "chore(:robot:): Github Actions Dhall Workflows Update"

@@ -5,11 +5,11 @@ on:
     branches:
       - master
     paths:
-      - "**/*.dhall"
+      - ".github/workflows/github-actions-dhall.yaml"
       - "**/*.dhall"
   pull_request:
     paths:
-      - "**/*.dhall"
+      - ".github/workflows/github-actions-dhall.yaml"
       - "**/*.dhall"
 jobs:
   lint:

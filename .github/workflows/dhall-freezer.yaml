@@ -2,6 +2,8 @@ name: Dhall freezer
 on:
   workflow_dispatch:
   push:
+    branches:
+      - master
     paths:
       - "**/*.dhall"
       - "**/*.dhall"

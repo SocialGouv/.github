@@ -1,7 +1,14 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": [
-    "local>SocialGouv/renovate-config",
-    ":automergeAll"
+  "extends": ["local>SocialGouv/renovate-config", ":automergeAll"],
+  "regexManagers": [
+    {
+      "datasourceTemplate": "github-tags",
+      "depNameTemplate": "dhall-lang/dhall-lang",
+      "fileMatch": ["\\.dhall$"],
+      "matchStrings": [
+        "https:\\/\\/prelude\\.dhall-lang\\.org\\/(?<currentValue>.*)\\/"
+      ]
+    }
   ]
 }

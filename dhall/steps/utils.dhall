@@ -1,11 +1,11 @@
 let Map/Type =
-      https://prelude.dhall-lang.org/v20.0.0/Map/Type.dhall sha256:210c7a9eba71efbb0f7a66b3dcf8b9d3976ffc2bc0e907aadfb6aa29c333e8ed
+      https://prelude.dhall-lang.org/v10.0.0/Map/Type.dhall sha256:210c7a9eba71efbb0f7a66b3dcf8b9d3976ffc2bc0e907aadfb6aa29c333e8ed
 
 let Map/map =
-      https://prelude.dhall-lang.org/v20.0.0/Map/map.dhall sha256:23e09b0b9f08649797dfe1ca39755d5e1c7cad2d0944bdd36c7a0bf804bde8d0
+      https://prelude.dhall-lang.org/v10.0.0/Map/map.dhall sha256:23e09b0b9f08649797dfe1ca39755d5e1c7cad2d0944bdd36c7a0bf804bde8d0
 
 let Map/unpackOptionals =
-      https://prelude.dhall-lang.org/v20.0.0/Map/unpackOptionals.dhall sha256:66c3e6f6f81418cf99342e1dba739617c01af4b27c1ca5e2e1d7bce64a522e22
+      https://prelude.dhall-lang.org/v10.0.0/Map/unpackOptionals.dhall sha256:66c3e6f6f81418cf99342e1dba739617c01af4b27c1ca5e2e1d7bce64a522e22
 
 let mapToSome
     : ∀(m : Map/Type Text Text) → Map/Type Text (Optional Text)

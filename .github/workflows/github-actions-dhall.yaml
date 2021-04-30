@@ -1,0 +1,48 @@
+name: Github Actions Dhall
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - master
+    paths:
+      - "**/*.dhall"
+      - "**/*.dhall"
+  pull_request:
+    paths:
+      - "**/*.dhall"
+      - "**/*.dhall"
+jobs:
+  lint:
+    name: Make the workflows
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.SOCIALGROOVYBOT_BOTO_PAT }}
+          branch: ${{ steps.comment.outputs.branch }}
+      - uses: "dhall-lang/setup-dhall@35fa9f606036a9b7138bcbc4d519021fdda7bd5e"
+        with:
+          github_token: "${{ github.token }}"
+          version: "1.38.1"
+      - run: |
+          find * -name '*.dhall' -type f -print0 | sort -buz | xargs -0 -i -t dhall lint --inplace {} --check
+  workflows_maker:
+    name: Make the workflows
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.SOCIALGROOVYBOT_BOTO_PAT }}
+          branch: ${{ steps.comment.outputs.branch }}
+      - uses: "dhall-lang/setup-dhall@35fa9f606036a9b7138bcbc4d519021fdda7bd5e"
+        with:
+          github_token: "${{ github.token }}"
+          version: "1.38.1"
+      - run: |
+          find dhall/.github/workflows-src -name '*.dhall' -type f -print0 |
+          sort -buz |
+          xargs -0 -i -t sh -c '
+            dhall-to-yaml --file {} --output .github/workflows/$(basename {} .dhall).yaml
+          '

@@ -54,3 +54,4 @@ jobs:
           author_name: ${{ secrets.SOCIALGROOVYBOT_NAME }}
           branch: ${{ steps.comment.outputs.branch }}
           message: "chore(:robot:): Github Actions Dhall Workflows Update"
+          add: ".github/workflows/"

@@ -1,4 +1,4 @@
-name: SocialGouv Github Actions Dhall
+name: SocialGouv Factory
 on:
   pull_request:
     paths:
@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 jobs:
   update:
-    name: Update
+    name: Factory Update
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -22,5 +22,5 @@ jobs:
           author_email: ${{ secrets.SOCIALGROOVYBOT_EMAIL }}
           author_name: ${{ secrets.SOCIALGROOVYBOT_NAME }}
           branch: ${{ steps.comment.outputs.branch }}
-          message: "chore(:robot:): dhall freezering"
-          add: "*.dhall"
+          message: "chore(:robot:): socialgouv factory update"
+          add: ".github/"

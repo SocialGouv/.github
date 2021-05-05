@@ -1,0 +1,29 @@
+name: SocialGouv Github Actions Dhall
+on:
+  pull_request:
+    paths:
+      - .github/workflows/socialgouv.github-actions-dhall.yaml
+  workflow_dispatch:
+env:
+  GITHUB_HOST: https://raw.githubusercontent.com/SocialGouv/.github
+  SOCIAL_GOUV_GITHUB_VERSION: v1.0.0
+jobs:
+  update:
+    name: Update
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2.3.3
+        with:
+          ref: ${{ github.head_ref }}
+          token: ${{ secrets.SOCIALGROOVYBOT_BOTO_PAT }}
+      - uses: "dhall-lang/setup-dhall@35fa9f606036a9b7138bcbc4d519021fdda7bd5e"
+        with:
+          github_token: "${{ github.token }}"
+          version: "1.38.1"
+      - run: |
+          wget -O- -q "${GITHUB_HOST}/${SOCIAL_GOUV_GITHUB_VERSION}/dhall/socialgouv/workflows/github-actions-dhall.dhall" | dhall-to-yaml
+          dhall-to-yaml --file {} --output .github/workflows/$(basename {} .dhall).yaml
+      - run: |
+          wget -O- -q https://raw.githubusercontent.com/novakov-alexey/krb-operator/master/manifest/rbac.dhall | dhall-to-yaml
+          dhall-to-yaml --file {} --output .github/workflows/$(basename {} .dhall).yaml

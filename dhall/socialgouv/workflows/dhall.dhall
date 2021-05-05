@@ -14,16 +14,38 @@ let on =
 let runs-on = GithubActions.RunsOn.Type.ubuntu-latest
 
 let checkout =
-          GithubActions.steps.actions/checkout
-      //  GithubActions.Step::{
-          , name = Some "Checkout"
-          , `with` = Some
-              ( toMap
-                  { branch = "\${{ steps.comment.outputs.branch }}"
-                  , token = "\${{ secrets.SOCIALGROOVYBOT_BOTO_PAT }}"
-                  }
-              )
-          }
+        GithubActions.steps.actions/checkout
+      ⫽ GithubActions.Step::{
+        , name = Some "Checkout"
+        , `with` = Some
+            ( toMap
+                { branch = "\${{ steps.comment.outputs.branch }}"
+                , token = "\${{ secrets.SOCIALGROOVYBOT_BOTO_PAT }}"
+                }
+            )
+        }
+
+let add-and-commit
+    : ∀(args : { add : Text, message : Text }) → GithubActions.Step.Type
+    = λ(args : { add : Text, message : Text }) →
+        GithubActions.Step::{
+        , name = Some "Commit changes"
+        , uses = Some
+            "EndBug/add-and-commit@a3adef035a1381dcf888c90b847240e2ddb9e008"
+        , env = Some
+            ( toMap
+                { GITHUB_TOKEN = "\${{ secrets.SOCIALGROOVYBOT_BOTO_PAT }}" }
+            )
+        , `with` = Some
+            ( toMap
+                { author_email = "\${{ secrets.SOCIALGROOVYBOT_EMAIL }}"
+                , author_name = "\${{ secrets.SOCIALGROOVYBOT_NAME }}"
+                , branch = "\${{ steps.comment.outputs.branch }}"
+                , message = args.message
+                , add = args.add
+                }
+            )
+        }
 
 let dhall_version = "1.38.1"
 
@@ -40,7 +62,7 @@ let setup-dhall =
 
 let lint =
       GithubActions.Job::{
-      , name = Some "Lint"
+      , name = Some "Lint all .dhall files"
       , runs-on
       , steps =
         [ checkout
@@ -73,29 +95,11 @@ let freezer =
                 xargs -0 -i -t dhall freeze --inplace {}
               ''
           }
+        , add-and-commit
+            { message = "chore(:robot:): workflows-src to workflows"
+            , add = ".github/workflows/"
+            }
         ]
       }
 
-let workflows_maker =
-      GithubActions.Job::{
-      , name = Some "Make the workflows"
-      , needs = Some [ "lint", "freezer" ]
-      , runs-on
-      , steps =
-        [ checkout
-        , setup-dhall
-        , GithubActions.Step::{
-          , name = Some "Dhall Lint"
-          , run = Some
-              ''
-              find dhall/.github/workflows-src -name '*.dhall' -type f -print0 |
-                sort -buz |
-                xargs -0 -i sh -xc '
-                  dhall-to-yaml --file {} --output .github/workflows/$(basename {} .dhall).yaml
-                '
-              ''
-          }
-        ]
-      }
-
-in  GithubActions.Workflow::{ name, on, jobs = toMap { lint } }
+in  GithubActions.Workflow::{ name, on, jobs = toMap { lint, freezer } }

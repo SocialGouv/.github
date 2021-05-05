@@ -96,9 +96,7 @@ let freezer =
               ''
           }
         , add-and-commit
-            { message = "chore(:robot:): workflows-src to workflows"
-            , add = ".github/workflows/"
-            }
+            { message = "chore(:robot:): dhall freezer", add = "*.dhall" }
         ]
       }
 

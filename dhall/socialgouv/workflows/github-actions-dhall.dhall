@@ -57,45 +57,4 @@ let lint =
         ]
       }
 
-let freezer =
-      GithubActions.Job::{
-      , name = Some "Freeze all .dhall files"
-      , runs-on
-      , steps =
-        [ checkout
-        , setup-dhall
-        , GithubActions.Step::{
-          , name = Some "Dhall Freeze"
-          , run = Some
-              ''
-              find * -name '*.dhall' -type f -print0 |
-                sort -buz |
-                xargs -0 -i -t dhall freeze --inplace {}
-              ''
-          }
-        ]
-      }
-
-let workflows_maker =
-      GithubActions.Job::{
-      , name = Some "Make the workflows"
-      , needs = Some [ "lint", "freezer" ]
-      , runs-on
-      , steps =
-        [ checkout
-        , setup-dhall
-        , GithubActions.Step::{
-          , name = Some "Dhall Lint"
-          , run = Some
-              ''
-              find dhall/.github/workflows-src -name '*.dhall' -type f -print0 |
-                sort -buz |
-                xargs -0 -i sh -xc '
-                  dhall-to-yaml --file {} --output .github/workflows/$(basename {} .dhall).yaml
-                '
-              ''
-          }
-        ]
-      }
-
 in  GithubActions.Workflow::{ name, on, jobs = toMap { lint } }

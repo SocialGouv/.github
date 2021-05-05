@@ -57,11 +57,13 @@ name: Dhall freezer
 on:
   pull_request:
     paths:
-      - "**/*.dhall"
+      - ".github/workflows/@socialgouv.factory.yaml"
+      - ".github/workflows-src/**"
   push:
     branches:
       - master
       - main
     paths:
-      - "**/*.dhall"
+      - ".github/workflows/@socialgouv.factory.yaml"
+      - ".github/workflows-src/**"
   workflow_dispatch: {}

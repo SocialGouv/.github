@@ -2,11 +2,8 @@ name: SocialGouv Github Actions Dhall
 on:
   pull_request:
     paths:
-      - .github/workflows/socialgouv.github-actions-dhall.yaml
+      - .github/workflows/socialgouv.factory.yaml
   workflow_dispatch:
-env:
-  GITHUB_HOST: https://raw.githubusercontent.com/SocialGouv/.github
-  SOCIAL_GOUV_GITHUB_VERSION: v1.0.0
 jobs:
   update:
     name: Update
@@ -17,13 +14,13 @@ jobs:
         with:
           ref: ${{ github.head_ref }}
           token: ${{ secrets.SOCIALGROOVYBOT_BOTO_PAT }}
-      - uses: "dhall-lang/setup-dhall@35fa9f606036a9b7138bcbc4d519021fdda7bd5e"
+      - uses: "./actions/factory"
+      - uses: EndBug/add-and-commit@v5
+        env:
+          GITHUB_TOKEN: ${{ secrets.SOCIALGROOVYBOT_BOTO_PAT }}
         with:
-          github_token: "${{ github.token }}"
-          version: "1.38.1"
-      - run: |
-          wget -O- -q "${GITHUB_HOST}/${SOCIAL_GOUV_GITHUB_VERSION}/dhall/socialgouv/workflows/github-actions-dhall.dhall" | dhall-to-yaml
-          dhall-to-yaml --file {} --output .github/workflows/$(basename {} .dhall).yaml
-      - run: |
-          wget -O- -q https://raw.githubusercontent.com/novakov-alexey/krb-operator/master/manifest/rbac.dhall | dhall-to-yaml
-          dhall-to-yaml --file {} --output .github/workflows/$(basename {} .dhall).yaml
+          author_email: ${{ secrets.SOCIALGROOVYBOT_EMAIL }}
+          author_name: ${{ secrets.SOCIALGROOVYBOT_NAME }}
+          branch: ${{ steps.comment.outputs.branch }}
+          message: "chore(:robot:): dhall freezering"
+          add: "*.dhall"

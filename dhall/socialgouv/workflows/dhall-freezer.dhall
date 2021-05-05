@@ -3,6 +3,8 @@ let GithubActions =
 
 let add-and-commit = ../steps/add-and-commit.dhall
 
+let dhall-lang/setup-dhall = ../../steps/dhall-lang/setup-dhall/package.dhall
+
 let name = "Dhall freezer"
 
 let on =
@@ -34,15 +36,8 @@ let checkout =
 let dhall_version = "1.38.1"
 
 let setup-dhall =
-      GithubActions.Step::{
-      , name = Some "Step Dhall"
-      , uses = Some
-          "dhall-lang/setup-dhall@35fa9f606036a9b7138bcbc4d519021fdda7bd5e"
-      , `with` = Some
-          ( toMap
-              { github_token = "\${{ github.token }}", version = dhall_version }
-          )
-      }
+      dhall-lang/setup-dhall.`v4.2.0`
+        dhall-lang/setup-dhall.Input::{ version = Some dhall_version }
 
 let lint =
       GithubActions.Job::{

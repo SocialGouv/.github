@@ -1,0 +1,28 @@
+jobs:
+  workflows-src-to-workflows:
+    name: Convert
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        with:
+          branch: "${{ steps.comment.outputs.branch }}"
+          token: "${{ secrets.SOCIALGROOVYBOT_BOTO_PAT }}"
+      - uses: "dhall-lang/setup-dhall@35fa9f606036a9b7138bcbc4d519021fdda7bd5e"
+        with:
+          version: '1.38.1'
+      - name: Github Actions Dhall To Yaml
+        run: |
+          find .github/workflows-src -name '*.dhall' -type f -print0 |
+            sort -buz |
+            xargs -0 -i sh -xc '
+              dhall lint --inplace {} --check &&
+              dhall-to-yaml --file {} --output .github/workflows/$(basename {} .dhall).yaml
+            '
+name: Github Actions Dhall
+on:
+  push:
+    branches:
+      - master
+      - main
+    paths:
+      - ".github/workflows/github-actions-dhall.yaml"

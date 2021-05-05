@@ -3,4 +3,4 @@
 set -euo pipefail
 
 cp /workflows/boto.yml .github/workflows
-dhall-yaml /workflows/github-actions-dhall.dhall
+# dhall-yaml /workflows/github-actions-dhall.dhall

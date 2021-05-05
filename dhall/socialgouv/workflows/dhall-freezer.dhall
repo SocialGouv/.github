@@ -52,9 +52,11 @@ let lint =
               ''
               find . -name '*.dhall' -type f -print0 |
                 sort -buz |
-                xargs -0 -i -t dhall lint --inplace {} --check
+                xargs -0 -i -t dhall lint --inplace {}
               ''
           }
+        , add-and-commit
+            { message = "chore(:robot:): dhall lint", add = "*.dhall" }
         ]
       }
 

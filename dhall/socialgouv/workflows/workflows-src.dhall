@@ -1,6 +1,8 @@
 let GithubActions =
       ../../github-actions/package.dhall sha256:327d499ebf1ec63e5c3b0b0d5285b78a07be4ad1a941556eb35f67547004545f
 
+let add-and-commit = ../steps/add-and-commit.dhall
+
 let dhall-lang/setup-dhall = ../../steps/dhall-lang/setup-dhall/package.dhall
 
 let name = "Github Actions Dhall"
@@ -52,6 +54,10 @@ let workflows-src-to-workflows =
                 '
               ''
           }
+        , add-and-commit
+            { message = "chore(:robot:): workflows-src to workflows"
+            , add = ".github/workflows/"
+            }
         ]
       }
 

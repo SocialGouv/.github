@@ -18,16 +18,16 @@ let on =
 let runs-on = GithubActions.RunsOn.Type.ubuntu-latest
 
 let checkout =
-        GithubActions.steps.actions/checkout
-      ⫽ GithubActions.Step::{
-        , name = Some "Checkout"
-        , `with` = Some
-            ( toMap
-                { branch = "\${{ steps.comment.outputs.branch }}"
-                , token = "\${{ secrets.SOCIALGROOVYBOT_BOTO_PAT }}"
-                }
-            )
-        }
+      GithubActions.Step::{
+      , name = Some "Checkout"
+      , uses = Some "actions/checkout@v2"
+      , `with` = Some
+          ( toMap
+              { branch = "\${{ steps.comment.outputs.branch }}"
+              , token = "\${{ secrets.SOCIALGROOVYBOT_BOTO_PAT }}"
+              }
+          )
+      }
 
 let add-and-commit
     : ∀(args : { add : Text, message : Text }) → GithubActions.Step.Type

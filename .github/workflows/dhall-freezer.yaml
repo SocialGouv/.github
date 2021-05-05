@@ -1,6 +1,6 @@
 jobs:
   freezer:
-    name: Freeze all .dhall files
+    name: Freeze
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -21,13 +21,13 @@ jobs:
         name: Commit changes
         uses: "EndBug/add-and-commit@a3adef035a1381dcf888c90b847240e2ddb9e008"
         with:
-          add: "*.dhall"
+          add: "**/*.dhall"
           author_email: "${{ secrets.SOCIALGROOVYBOT_EMAIL }}"
           author_name: "${{ secrets.SOCIALGROOVYBOT_NAME }}"
           branch: "${{ steps.comment.outputs.branch }}"
           message: "chore(:robot:): dhall freezer"
   lint:
-    name: Lint all .dhall files
+    name: Lint
     runs-on: ubuntu-latest
     steps:
       - name: Checkout

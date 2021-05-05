@@ -41,7 +41,7 @@ let setup-dhall =
 
 let lint =
       GithubActions.Job::{
-      , name = Some "Lint all .dhall files"
+      , name = Some "Lint"
       , runs-on
       , steps =
         [ checkout
@@ -60,7 +60,7 @@ let lint =
 
 let freezer =
       GithubActions.Job::{
-      , name = Some "Freeze all .dhall files"
+      , name = Some "Freeze"
       , runs-on
       , steps =
         [ checkout
@@ -75,7 +75,7 @@ let freezer =
               ''
           }
         , add-and-commit
-            { message = "chore(:robot:): dhall freezer", add = "*.dhall" }
+            { message = "chore(:robot:): dhall freezer", add = "**/*.dhall" }
         ]
       }
 

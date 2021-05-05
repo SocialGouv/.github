@@ -35,46 +35,30 @@ let setup-dhall =
       dhall-lang/setup-dhall.`v4.2.0`
         dhall-lang/setup-dhall.Input::{ version = Some dhall_version }
 
-let lint =
+let workflows-src-to-workflows =
       GithubActions.Job::{
-      , name = Some "Lint all .dhall files"
+      , name = Some "Convert"
       , runs-on
       , steps =
         [ checkout
         , setup-dhall
         , GithubActions.Step::{
-          , name = Some "Dhall Lint"
+          , name = Some "Github Actions Dhall To Yaml"
           , run = Some
               ''
-              find * -name '*.dhall' -type f -print0 |
+              find .github/workflows-src -name '*.dhall' -type f -print0 |
                 sort -buz |
-                xargs -0 -i -t dhall lint --inplace {} --check
+                xargs -0 -i sh -xc '
+                  dhall lint --inplace {} --check &&
+                  dhall-to-yaml --file {} --output .github/workflows/$(basename {} .dhall).yaml
+                '
               ''
           }
         ]
       }
 
-let freezer =
-      GithubActions.Job::{
-      , name = Some "Freeze all .dhall files"
-      , runs-on
-      , steps =
-        [ checkout
-        , setup-dhall
-        , GithubActions.Step::{
-          , name = Some "Dhall Freeze"
-          , run = Some
-              ''
-              find * -name '*.dhall' -type f -print0 |
-                sort -buz |
-                xargs -0 -i -t dhall freeze --inplace {}
-              ''
-          }
-        , add-and-commit
-            { message = "chore(:robot:): workflows-src to workflows"
-            , add = ".github/workflows/"
-            }
-        ]
-      }
-
-in  GithubActions.Workflow::{ name, on, jobs = toMap { lint, freezer } }
+in  GithubActions.Workflow::{
+    , name
+    , on
+    , jobs = toMap { workflows-src-to-workflows }
+    }

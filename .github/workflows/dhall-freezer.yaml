@@ -8,10 +8,8 @@ jobs:
         with:
           ref: "${{ steps.comment.outputs.branch }}"
           token: "${{ secrets.SOCIALGROOVYBOT_BOTO_PAT }}"
-      - name: Step Dhall
-        uses: "dhall-lang/setup-dhall@35fa9f606036a9b7138bcbc4d519021fdda7bd5e"
+      - uses: "dhall-lang/setup-dhall@35fa9f606036a9b7138bcbc4d519021fdda7bd5e"
         with:
-          github_token: "${{ github.token }}"
           version: '1.38.1'
       - name: Dhall Freeze
         run: |
@@ -37,10 +35,8 @@ jobs:
         with:
           ref: "${{ steps.comment.outputs.branch }}"
           token: "${{ secrets.SOCIALGROOVYBOT_BOTO_PAT }}"
-      - name: Step Dhall
-        uses: "dhall-lang/setup-dhall@35fa9f606036a9b7138bcbc4d519021fdda7bd5e"
+      - uses: "dhall-lang/setup-dhall@35fa9f606036a9b7138bcbc4d519021fdda7bd5e"
         with:
-          github_token: "${{ github.token }}"
           version: '1.38.1'
       - name: Dhall Lint
         run: |

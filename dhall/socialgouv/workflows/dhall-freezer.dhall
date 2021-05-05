@@ -11,10 +11,16 @@ let on =
       GithubActions.On::{
       , push = Some GithubActions.Push::{
         , branches = Some [ "master", "main" ]
-        , paths = Some [ "**/*.dhall" ]
+        , paths = Some
+          [ ".github/workflows/@socialgouv.factory.yaml"
+          , ".github/workflows-src/**"
+          ]
         }
       , pull_request = Some GithubActions.Push::{
-        , paths = Some [ "**/*.dhall" ]
+        , paths = Some
+          [ ".github/workflows/@socialgouv.factory.yaml"
+          , ".github/workflows-src/**"
+          ]
         }
       , workflow_dispatch = Some GithubActions.WorkflowDispatch::{=}
       }

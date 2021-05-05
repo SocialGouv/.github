@@ -5,10 +5,14 @@ let name = "Dhall freezer"
 
 let on =
       GithubActions.On::{
-      , pull_request = Some GithubActions.Push::{
+      , push = Some GithubActions.Push::{
         , branches = Some [ "master", "main" ]
         , paths = Some [ "**/*.dhall" ]
         }
+      , pull_request = Some GithubActions.Push::{
+        , paths = Some [ "**/*.dhall" ]
+        }
+      , workflow_dispatch = Some GithubActions.WorkflowDispatch::{=}
       }
 
 let runs-on = GithubActions.RunsOn.Type.ubuntu-latest

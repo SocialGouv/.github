@@ -1,0 +1,55 @@
+jobs:
+  freezer:
+    name: Freeze all .dhall files
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        with:
+          branch: "${{ steps.comment.outputs.branch }}"
+          token: "${{ secrets.SOCIALGROOVYBOT_BOTO_PAT }}"
+      - name: Step Dhall
+        uses: "dhall-lang/setup-dhall@35fa9f606036a9b7138bcbc4d519021fdda7bd5e"
+        with:
+          github_token: "${{ github.token }}"
+          version: '1.38.1'
+      - name: Dhall Freeze
+        run: |
+          find * -name '*.dhall' -type f -print0 |
+            sort -buz |
+            xargs -0 -i -t dhall freeze --inplace {}
+      - env:
+          GITHUB_TOKEN: "${{ secrets.SOCIALGROOVYBOT_BOTO_PAT }}"
+        name: Commit changes
+        uses: "EndBug/add-and-commit@a3adef035a1381dcf888c90b847240e2ddb9e008"
+        with:
+          add: ".github/workflows/"
+          author_email: "${{ secrets.SOCIALGROOVYBOT_EMAIL }}"
+          author_name: "${{ secrets.SOCIALGROOVYBOT_NAME }}"
+          branch: "${{ steps.comment.outputs.branch }}"
+          message: "chore(:robot:): workflows-src to workflows"
+  lint:
+    name: Lint all .dhall files
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        with:
+          branch: "${{ steps.comment.outputs.branch }}"
+          token: "${{ secrets.SOCIALGROOVYBOT_BOTO_PAT }}"
+      - name: Step Dhall
+        uses: "dhall-lang/setup-dhall@35fa9f606036a9b7138bcbc4d519021fdda7bd5e"
+        with:
+          github_token: "${{ github.token }}"
+          version: '1.38.1'
+      - name: Dhall Lint
+        run: |
+          find * -name '*.dhall' -type f -print0 |
+            sort -buz |
+            xargs -0 -i -t dhall lint --inplace {} --check
+name: Github Actions Dhall
+on:
+  push:
+    branches:
+      - master
+      - main
+    paths:
+      - ".github/workflows/github-actions-dhall.yaml"

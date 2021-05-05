@@ -50,7 +50,7 @@ let lint =
           , name = Some "Dhall Lint"
           , run = Some
               ''
-              find * -name '*.dhall' -type f -print0 |
+              find . -name '*.dhall' -type f -print0 |
                 sort -buz |
                 xargs -0 -i -t dhall lint --inplace {} --check
               ''
@@ -69,7 +69,7 @@ let freezer =
           , name = Some "Dhall Freeze"
           , run = Some
               ''
-              find * -name '*.dhall' -type f -print0 |
+              find . -name '*.dhall' -type f -print0 |
                 sort -buz |
                 xargs -0 -i -t dhall freeze --inplace {}
               ''

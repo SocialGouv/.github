@@ -48,8 +48,12 @@ jobs:
 name: Dhall freezer
 on:
   pull_request:
+    paths:
+      - "**/*.dhall"
+  push:
     branches:
       - master
       - main
     paths:
       - "**/*.dhall"
+  workflow_dispatch: {}

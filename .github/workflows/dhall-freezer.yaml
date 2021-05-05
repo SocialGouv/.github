@@ -47,9 +47,6 @@ jobs:
             xargs -0 -i -t dhall lint --inplace {} --check
 name: Dhall freezer
 on:
-  push:
-    branches:
-      - master
-      - main
+  pull_request:
     paths:
-      - ".github/workflows/github-actions-dhall.yaml"
+      - "**/*.dhall"

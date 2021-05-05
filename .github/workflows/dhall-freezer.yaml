@@ -48,5 +48,8 @@ jobs:
 name: Dhall freezer
 on:
   pull_request:
+    branches:
+      - master
+      - main
     paths:
       - "**/*.dhall"

@@ -1,0 +1,9 @@
+name: "Social Gouv Factory"
+description: "Workflows Factory for SocialGouv repositories on GitHub"
+author: "SocialGouv"
+inputs:
+  token:
+    default: ${{ github.token }}
+runs:
+  using: "docker"
+  image: "Dockerfile"

@@ -75,7 +75,7 @@ let freezer =
               ''
           }
         , add-and-commit
-            { message = "chore(:robot:): dhall freezer", add = "**/*.dhall" }
+            { message = "chore(:robot:): dhall freezer", add = "*.dhall" }
         ]
       }
 

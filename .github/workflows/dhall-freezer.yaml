@@ -13,7 +13,7 @@ jobs:
           version: '1.38.1'
       - name: Dhall Freeze
         run: |
-          find * -name '*.dhall' -type f -print0 |
+          find . -name '*.dhall' -type f -print0 |
             sort -buz |
             xargs -0 -i -t dhall freeze --inplace {}
       - env:
@@ -40,7 +40,7 @@ jobs:
           version: '1.38.1'
       - name: Dhall Lint
         run: |
-          find * -name '*.dhall' -type f -print0 |
+          find . -name '*.dhall' -type f -print0 |
             sort -buz |
             xargs -0 -i -t dhall lint --inplace {} --check
 name: Dhall freezer

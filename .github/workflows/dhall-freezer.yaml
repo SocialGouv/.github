@@ -21,7 +21,7 @@ jobs:
         name: Commit changes
         uses: "EndBug/add-and-commit@a3adef035a1381dcf888c90b847240e2ddb9e008"
         with:
-          add: "*.dhall"
+          add: ".github/ *.dhall"
           author_email: "${{ secrets.SOCIALGROOVYBOT_EMAIL }}"
           author_name: "${{ secrets.SOCIALGROOVYBOT_NAME }}"
           branch: "${{ steps.comment.outputs.branch }}"
@@ -48,7 +48,7 @@ jobs:
         name: Commit changes
         uses: "EndBug/add-and-commit@a3adef035a1381dcf888c90b847240e2ddb9e008"
         with:
-          add: "*.dhall"
+          add: ".github/ *.dhall"
           author_email: "${{ secrets.SOCIALGROOVYBOT_EMAIL }}"
           author_name: "${{ secrets.SOCIALGROOVYBOT_NAME }}"
           branch: "${{ steps.comment.outputs.branch }}"

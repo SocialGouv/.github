@@ -8,7 +8,7 @@ RUN apk add --update --no-cache \
 COPY --from=dhall_image /usr/local/bin/dhall /usr/local/bin/
 COPY --from=dhall_image /usr/local/bin/dhall-to-yaml /usr/local/bin/
 
-COPY workflows /workflows
+COPY .github /.github
 
 COPY entrypoint.sh /entrypoint.sh
 

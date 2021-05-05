@@ -2,5 +2,6 @@
 
 set -euo pipefail
 
-cp /workflows/boto.yml .github/workflows
+cp /.github/stale.yml .github/stale.yml
+cp /.github/workflows/boto.yml .github/workflows
 # dhall-yaml /workflows/github-actions-dhall.dhall

@@ -20,10 +20,10 @@ let runs-on = GithubActions.RunsOn.Type.ubuntu-latest
 let checkout =
       GithubActions.Step::{
       , name = Some "Checkout"
-      , uses = Some "actions/checkout@v2"
+      , uses = Some "actions/checkout@5a4ac9002d0be2fb38bd78e4b4dbde5606d7042f"
       , `with` = Some
           ( toMap
-              { branch = "\${{ steps.comment.outputs.branch }}"
+              { ref = "\${{ steps.comment.outputs.branch }}"
               , token = "\${{ secrets.SOCIALGROOVYBOT_BOTO_PAT }}"
               }
           )

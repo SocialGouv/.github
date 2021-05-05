@@ -5,9 +5,8 @@ let name = "Dhall freezer"
 
 let on =
       GithubActions.On::{
-      , push = Some GithubActions.Push::{
-        , branches = Some [ "master", "main" ]
-        , paths = Some [ ".github/workflows/github-actions-dhall.yaml" ]
+      , pull_request = Some GithubActions.Push::{
+        , paths = Some [ "**/*.dhall" ]
         }
       }
 

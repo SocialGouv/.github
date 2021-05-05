@@ -18,6 +18,16 @@ jobs:
               dhall lint --inplace {} --check &&
               dhall-to-yaml --file {} --output .github/workflows/$(basename {} .dhall).yaml
             '
+      - env:
+          GITHUB_TOKEN: "${{ secrets.SOCIALGROOVYBOT_BOTO_PAT }}"
+        name: Commit changes
+        uses: "EndBug/add-and-commit@a3adef035a1381dcf888c90b847240e2ddb9e008"
+        with:
+          add: ".github/workflows/"
+          author_email: "${{ secrets.SOCIALGROOVYBOT_EMAIL }}"
+          author_name: "${{ secrets.SOCIALGROOVYBOT_NAME }}"
+          branch: "${{ steps.comment.outputs.branch }}"
+          message: "chore(:robot:): workflows-src to workflows"
 name: Github Actions Dhall
 on:
   push:

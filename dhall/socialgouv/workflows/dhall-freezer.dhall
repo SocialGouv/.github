@@ -6,6 +6,7 @@ let name = "Dhall freezer"
 let on =
       GithubActions.On::{
       , pull_request = Some GithubActions.Push::{
+        , branches = Some [ "master", "main" ]
         , paths = Some [ "**/*.dhall" ]
         }
       }

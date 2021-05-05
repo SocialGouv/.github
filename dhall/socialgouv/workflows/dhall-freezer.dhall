@@ -56,7 +56,7 @@ let lint =
               ''
           }
         , add-and-commit
-            { message = "chore(:robot:): dhall lint", add = "*.dhall" }
+            { message = "chore(:robot:): dhall lint", add = ".github/ *.dhall" }
         ]
       }
 
@@ -77,7 +77,9 @@ let freezer =
               ''
           }
         , add-and-commit
-            { message = "chore(:robot:): dhall freezer", add = "*.dhall" }
+            { message = "chore(:robot:): dhall freezer"
+            , add = ".github/ *.dhall"
+            }
         ]
       }
 

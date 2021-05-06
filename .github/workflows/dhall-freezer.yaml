@@ -15,13 +15,13 @@ jobs:
         run: |
           find . -name '*.dhall' -type f -print0 |
             sort -buz |
-            xargs -0 -i -t dhall freeze --inplace {}
+            xargs -0 -i -t dhall freeze --all --inplace {}
       - env:
           GITHUB_TOKEN: "${{ secrets.SOCIALGROOVYBOT_BOTO_PAT }}"
         name: Commit changes
         uses: "EndBug/add-and-commit@a3adef035a1381dcf888c90b847240e2ddb9e008"
         with:
-          add: ".github/ *.dhall"
+          add: "*.dhall"
           author_email: "${{ secrets.SOCIALGROOVYBOT_EMAIL }}"
           author_name: "${{ secrets.SOCIALGROOVYBOT_NAME }}"
           branch: "${{ steps.comment.outputs.branch }}"
@@ -48,7 +48,7 @@ jobs:
         name: Commit changes
         uses: "EndBug/add-and-commit@a3adef035a1381dcf888c90b847240e2ddb9e008"
         with:
-          add: ".github/ *.dhall"
+          add: "*.dhall"
           author_email: "${{ secrets.SOCIALGROOVYBOT_EMAIL }}"
           author_name: "${{ secrets.SOCIALGROOVYBOT_NAME }}"
           branch: "${{ steps.comment.outputs.branch }}"

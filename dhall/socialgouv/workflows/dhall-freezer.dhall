@@ -62,7 +62,7 @@ let lint =
               ''
           }
         , add-and-commit
-            { message = "chore(:robot:): dhall lint", add = ".github/ *.dhall" }
+            { message = "chore(:robot:): dhall lint", add = "*.dhall" }
         ]
       }
 
@@ -79,13 +79,11 @@ let freezer =
               ''
               find . -name '*.dhall' -type f -print0 |
                 sort -buz |
-                xargs -0 -i -t dhall freeze --inplace {}
+                xargs -0 -i -t dhall freeze --all --inplace {}
               ''
           }
         , add-and-commit
-            { message = "chore(:robot:): dhall freezer"
-            , add = ".github/ *.dhall"
-            }
+            { message = "chore(:robot:): dhall freezer", add = "*.dhall" }
         ]
       }
 

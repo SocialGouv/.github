@@ -1,9 +1,11 @@
 let GithubActions =
       ../../github-actions/package.dhall sha256:327d499ebf1ec63e5c3b0b0d5285b78a07be4ad1a941556eb35f67547004545f
 
-let add-and-commit = ../steps/add-and-commit.dhall
+let add-and-commit =
+      ../steps/add-and-commit.dhall sha256:15423ba92afda80694de97e1d3100da031180434e1fa546b3aa23d426bb36786
 
-let dhall-lang/setup-dhall = ../../steps/dhall-lang/setup-dhall/package.dhall
+let dhall-lang/setup-dhall =
+      ../../steps/dhall-lang/setup-dhall/package.dhall sha256:2bcd97c0d170aecede86ef3294018eb0f36a87a41d0503ec950ce7112967f8b0
 
 let name = "Dhall freezer"
 

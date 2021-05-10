@@ -13,7 +13,7 @@ let on =
       GithubActions.On::{
       , push = Some GithubActions.Push::{
         , branches = Some [ "master", "main" ]
-        , paths = Some [ ".github/workflows/github-actions-dhall.yaml" ]
+        , paths = Some [ ".github/workflows/workflows-src.yml" ]
         }
       }
 

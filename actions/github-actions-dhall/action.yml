@@ -1,0 +1,20 @@
+name: "Github Actions Dhall"
+description: "Convert Github Actions Dhall Workflows to Github Actions"
+author: "SocialGouv"
+inputs:
+  src:
+    description: Dhall workflows sources
+    required: false
+    default: ".github/workflows-src/*"
+  dest:
+    description: Github Workflows folder
+    required: false
+    default: ".github/workflows"
+  token:
+    default: ${{ github.token }}
+runs:
+  using: "docker"
+  image: "Dockerfile"
+  args:
+    - ${{ inputs.src }}
+    - ${{ inputs.dest }}

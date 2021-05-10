@@ -72,11 +72,3 @@ endef
 
 $(foreach file, $(ASSEMBLY_LINE_SRC),$(eval $(call make_assembly_targets,$(file))))
 $(eval $(call make_assembly_targets,dhall/.github/workflows/ci.dhall))
-
-#
-#
-#
-
-.github/workflows/dhall.workflows.yaml: dhall/.github/workflows/ci.dhall $(CACHE_DIR)/hash/dhall/.github/workflows/ci.hash
-	@mkdir -p $(shell dirname "$@")
-	$(DHALL)-to-yaml --file $< --output $@

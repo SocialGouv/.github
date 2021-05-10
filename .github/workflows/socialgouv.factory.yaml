@@ -1,0 +1,37 @@
+name: SocialGouv Factory
+on:
+  pull_request:
+    paths:
+      - .github/workflows/@socialgouv.factory.yaml
+      - .github/workflows-src/**
+  workflow_dispatch:
+jobs:
+  dhall:
+    name: Github Actions Dhall To Yaml
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2.3.3
+        with:
+          ref: ${{ github.head_ref }}
+          token: ${{ secrets.SOCIALGROOVYBOT_BOTO_PAT }}
+      - uses: "dhall-lang/setup-dhall@35fa9f606036a9b7138bcbc4d519021fdda7bd5e"
+        with:
+          github_token: "${{ github.token }}"
+          version: "1.38.1"
+      - run: |
+          find .github/workflows-src -name '*.dhall' -type f -print0 |
+            sort -buz |
+            xargs -0 -i sh -xc '
+              dhall lint --inplace {} --check &&
+              dhall-to-yaml --file {} --output .github/workflows/$(basename {} .dhall).yaml
+            '
+      - uses: EndBug/add-and-commit@v5
+        env:
+          GITHUB_TOKEN: ${{ secrets.SOCIALGROOVYBOT_BOTO_PAT }}
+        with:
+          author_email: ${{ secrets.SOCIALGROOVYBOT_EMAIL }}
+          author_name: ${{ secrets.SOCIALGROOVYBOT_NAME }}
+          branch: ${{ steps.comment.outputs.branch }}
+          message: "chore(:robot:): workflows-src to workflows"
+          add: ".github/workflows/"

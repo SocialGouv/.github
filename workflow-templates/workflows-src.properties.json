@@ -1,6 +1,6 @@
 {
-  "name": "SocialGouv :robot: Workflow Source Dhall",
-  "description": "SocialGouv :robot: workflows source dhall.",
+  "name": "SocialGouv Workflow Source Dhall",
+  "description": "SocialGouv workflows source dhall.",
   "iconName": "marianne",
   "categories": ["Dhall"]
 }

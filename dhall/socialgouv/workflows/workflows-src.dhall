@@ -21,8 +21,7 @@ let runs-on = GithubActions.RunsOn.Type.ubuntu-latest
 
 let checkout =
         GithubActions.steps.actions/checkout
-      ⫽ GithubActions.Step::{
-        , name = Some "Checkout"
+      ⫽ { name = Some "Checkout"
         , `with` = Some
             ( toMap
                 { branch = "\${{ steps.comment.outputs.branch }}"

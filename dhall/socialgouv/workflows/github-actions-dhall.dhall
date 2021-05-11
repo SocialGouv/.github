@@ -1,6 +1,8 @@
 let GithubActions =
       ../../github-actions/package.dhall sha256:327d499ebf1ec63e5c3b0b0d5285b78a07be4ad1a941556eb35f67547004545f
 
+let setup-dhall = ../steps/setup-dhall.dhall
+
 let name = "Github Actions Dhall"
 
 let on =
@@ -15,8 +17,7 @@ let runs-on = GithubActions.RunsOn.Type.ubuntu-latest
 
 let checkout =
           GithubActions.steps.actions/checkout
-      //  GithubActions.Step::{
-          , name = Some "Checkout"
+      //  { name = Some "Checkout"
           , `with` = Some
               ( toMap
                   { branch = "\${{ steps.comment.outputs.branch }}"
@@ -24,19 +25,6 @@ let checkout =
                   }
               )
           }
-
-let dhall_version = "1.38.1"
-
-let setup-dhall =
-      GithubActions.Step::{
-      , name = Some "Step Dhall"
-      , uses = Some
-          "dhall-lang/setup-dhall@35fa9f606036a9b7138bcbc4d519021fdda7bd5e"
-      , `with` = Some
-          ( toMap
-              { github_token = "\${{ github.token }}", version = dhall_version }
-          )
-      }
 
 let lint =
       GithubActions.Job::{

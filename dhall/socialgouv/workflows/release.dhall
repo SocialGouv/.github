@@ -12,8 +12,7 @@ let release =
       , runs-on = GithubActions.RunsOn.Type.ubuntu-latest
       , steps =
         [     GithubActions.steps.actions/checkout
-          //  GithubActions.Step::{
-              , name = Some "Checkout"
+          //  { name = Some "Checkout"
               , `with` = Some
                   (toMap { token = "\${{ secrets.SOCIALGROOVYBOT_BOTO_PAT }}" })
               }

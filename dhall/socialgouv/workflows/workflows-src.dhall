@@ -7,13 +7,16 @@ let add-and-commit =
 let dhall-lang/setup-dhall =
       ../../steps/dhall-lang/setup-dhall/package.dhall sha256:2bcd97c0d170aecede86ef3294018eb0f36a87a41d0503ec950ce7112967f8b0
 
-let name = "Github Actions Dhall"
+let name = "🤖 / Dhall Workflows"
 
 let on =
       GithubActions.On::{
-      , push = Some GithubActions.Push::{
+      , pull_request = Some GithubActions.Push::{
         , branches = Some [ "master", "main" ]
-        , paths = Some [ ".github/workflows/workflows-src.yml" ]
+        , paths = Some
+          [ ".github/workflows-src/**"
+          , ".github/workflows/@workflows-src.yaml"
+          ]
         }
       }
 
@@ -23,11 +26,7 @@ let checkout =
         GithubActions.steps.actions/checkout
       ⫽ { name = Some "Checkout"
         , `with` = Some
-            ( toMap
-                { branch = "\${{ steps.comment.outputs.branch }}"
-                , token = "\${{ secrets.SOCIALGROOVYBOT_BOTO_PAT }}"
-                }
-            )
+            (toMap { token = "\${{ secrets.SOCIALGROOVYBOT_BOTO_PAT }}" })
         }
 
 let dhall_version = "1.38.1"
@@ -38,7 +37,7 @@ let setup-dhall =
 
 let workflows-src-to-workflows =
       GithubActions.Job::{
-      , name = Some "Convert"
+      , name = Some "Convert to workflows"
       , runs-on
       , steps =
         [ checkout
@@ -50,7 +49,8 @@ let workflows-src-to-workflows =
               find .github/workflows-src -name '*.dhall' -type f -print0 |
                 sort -buz |
                 xargs -0 -i sh -xc '
-                  dhall lint --inplace {} --check &&
+                  dhall freeze --inplace {} &&
+                  dhall lint --inplace {} &&
                   dhall-to-yaml --file {} --output .github/workflows/$(basename {} .dhall).yaml
                 '
               ''

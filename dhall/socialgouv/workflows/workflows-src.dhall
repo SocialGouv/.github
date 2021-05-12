@@ -57,7 +57,7 @@ let workflows-src-to-workflows =
           }
         , add-and-commit
             { message = "chore(:robot:): workflows-src to workflows"
-            , add = ".github/workflows/"
+            , add = ".github/"
             }
         ]
       }

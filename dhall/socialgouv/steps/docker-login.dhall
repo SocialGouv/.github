@@ -1,5 +1,5 @@
 let GithubActions =
-      ../../github-actions/package.dhall sha256:327d499ebf1ec63e5c3b0b0d5285b78a07be4ad1a941556eb35f67547004545f
+      ../../github-actions/package.dhall sha256:2bbfa9dca70fcfb23b1382e737768a6447d766bcc4b8f2ef1141dd6b94cc5fee
 
 let login-action =
       ../../steps/docker/login-action/package.dhall sha256:4265475c09a9d28a758ad4ac3f5e46131aa2c9463d8001b87bd52af21ffadc04

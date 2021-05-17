@@ -1,5 +1,5 @@
 let GithubActions =
-      ../../github-actions/package.dhall sha256:327d499ebf1ec63e5c3b0b0d5285b78a07be4ad1a941556eb35f67547004545f
+      ../../github-actions/package.dhall sha256:2bbfa9dca70fcfb23b1382e737768a6447d766bcc4b8f2ef1141dd6b94cc5fee
 
 let build-push-action =
       ../../steps/docker/build-push-action/package.dhall sha256:fc04eef536f027a5796f537351756e62c25355ec18a4b0354f93a8b92d3b7e43

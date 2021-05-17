@@ -1,8 +1,8 @@
 let GithubActions =
-      ../../github-actions/package.dhall sha256:327d499ebf1ec63e5c3b0b0d5285b78a07be4ad1a941556eb35f67547004545f
+      ../../github-actions/package.dhall sha256:2bbfa9dca70fcfb23b1382e737768a6447d766bcc4b8f2ef1141dd6b94cc5fee
 
 let Semantic =
-      ../../github-actions/sementic.dhall sha256:80f8fba713446763d862fb20e1e6e6984bc2ef57f321cc1a67672fe073755820
+      ../../github-actions/sementic.dhall sha256:c8c34dd945d5d59881f0e21c622a05704f3883120b01bc12c7fa8833bfd2f4dd
 
 let name = "Release"
 

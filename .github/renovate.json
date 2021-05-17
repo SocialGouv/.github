@@ -14,10 +14,9 @@
     {
       "datasourceTemplate": "git-refs",
       "lookupNameTemplate": "{{{depName}}}",
-      "currentValue": "master",
       "fileMatch": ["\\.dhall$"],
       "matchStrings": [
-        "https:\\/\\/raw\\.githubusercontent\\.com\\/(?<depName>[^\\/]+\\/[^\\/]+)\\/(?<currentDigest>[^\\/]+)\\/"
+        "{- renovate: currentValue=(?<currentValue>.*?) -}\\s+https:\\/\\/raw\\.githubusercontent\\.com\\/(?<depName>[^\\/]+\\/[^\\/]+)\\/(?<currentDigest>[^\\/]+)\\/"
       ]
     }
   ]

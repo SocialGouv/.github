@@ -13,6 +13,7 @@
     },
     {
       "datasourceTemplate": "git-refs",
+      "lookupNameTemplate": "{{{depName}}}",
       "fileMatch": ["\\.dhall$"],
       "matchStrings": [
         "https:\\/\\/raw\\.githubusercontent\\.com\\/(?<depName>[^\\/]+\\/[^\\/]+)\\/(?<currentValue>[^\\/]+)\\/"

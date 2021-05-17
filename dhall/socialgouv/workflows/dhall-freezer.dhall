@@ -53,7 +53,7 @@ let freeze =
                 find ${cwd} -name '*.dhall' -type f -print0 |
                   sort -buz |
                   xargs -0 -i sh -xc '
-                    dhall freeze --all --inplace {} &&
+                    dhall freeze --all --transitive {} &&
                     dhall lint --inplace {}
                   '
                 ''

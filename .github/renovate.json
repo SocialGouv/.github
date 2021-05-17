@@ -2,22 +2,18 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "enabled": true,
   "extends": ["local>SocialGouv/renovate-config", ":automergeAll"],
-  "regexManagers": [
+  "packageRules": [
     {
-      "datasourceTemplate": "github-releases",
-      "depNameTemplate": "dhall-lang/dhall-lang",
-      "fileMatch": ["\\.dhall$"],
-      "matchStrings": [
-        "https:\\/\\/prelude\\.dhall-lang\\.org\\/(?<currentValue>[^/]+)\\/"
-      ]
-    },
-    {
-      "datasourceTemplate": "git-refs",
-      "lookupNameTemplate": "https://github.com/{{{depName}}}.git",
-      "fileMatch": ["\\.dhall$"],
-      "matchStrings": [
-        "{- renovate: currentValue=(?<currentValue>.*?) -}\\s+https:\\/\\/raw\\.githubusercontent\\.com\\/(?<depName>[^\\/]+\\/[^\\/]+)\\/(?<currentDigest>[^\\/]+)\\/"
-      ]
+      "matchDatasources": ["git-refs"],
+      "major": {
+        "semanticCommitType": "feat"
+      },
+      "minor": {
+        "semanticCommitType": "feat"
+      },
+      "patch": {
+        "semanticCommitType": "fix"
+      }
     }
   ]
 }

@@ -38,3 +38,11 @@ on:
     paths:
       - ".github/workflows-src/**"
       - ".github/workflows/@workflows-src.yaml"
+  push:
+    branches:
+      - master
+      - main
+    paths:
+      - ".github/workflows-src/**"
+      - ".github/workflows/@workflows-src.yaml"
+  workflow_dispatch: {}

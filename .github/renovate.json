@@ -10,6 +10,13 @@
       "matchStrings": [
         "https:\\/\\/prelude\\.dhall-lang\\.org\\/(?<currentValue>[^/]+)\\/"
       ]
+    },
+    {
+      "datasourceTemplate": "github-refs",
+      "fileMatch": ["\\.dhall$"],
+      "matchStrings": [
+        "https:\\/\\/raw\\.githubusercontent\\.com\\/(?<depName>[^\\/]+\\/[^\\/]+)\\/(?<currentValue>[^\\/]+)\\/"
+      ]
     }
   ]
 }

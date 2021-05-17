@@ -4,7 +4,8 @@ let GithubActions =
 let Input =
       ./Input.dhall sha256:7a1d0cd9d9be38b5c0034538563fc6abf357229ea4c743d836ce76c0d78319dd
 
-let utils = ../../utils.dhall
+let utils =
+      ../../utils.dhall sha256:52b53ac4f7bfc0ac42b2147a16166eea9b4ed92ab303c1e6ba255c450747d3da
 
 let step
     : ∀(ref : Text) → ∀(opts : Input.Type) → GithubActions.Step.Type

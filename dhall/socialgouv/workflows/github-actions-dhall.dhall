@@ -1,7 +1,8 @@
 let GithubActions =
       ../../github-actions/package.dhall sha256:327d499ebf1ec63e5c3b0b0d5285b78a07be4ad1a941556eb35f67547004545f
 
-let setup-dhall = ../steps/setup-dhall.dhall
+let setup-dhall =
+      ../steps/setup-dhall.dhall sha256:17d25b4ca228028938a58ba2bb0a668fdd2c9eb5d4b7ab377dac09aba655ed18
 
 let name = "Github Actions Dhall"
 

@@ -11,6 +11,13 @@ let name = "🤖 / Dhall Workflows"
 
 let on =
       GithubActions.On::{
+      , push = Some GithubActions.Push::{
+        , branches = Some [ "master", "main" ]
+        , paths = Some
+          [ ".github/workflows-src/**"
+          , ".github/workflows/@workflows-src.yaml"
+          ]
+        }
       , pull_request = Some GithubActions.Push::{
         , branches = Some [ "master", "main" ]
         , paths = Some
@@ -18,6 +25,7 @@ let on =
           , ".github/workflows/@workflows-src.yaml"
           ]
         }
+      , workflow_dispatch = Some GithubActions.WorkflowDispatch::{=}
       }
 
 let runs-on = GithubActions.RunsOn.Type.ubuntu-latest

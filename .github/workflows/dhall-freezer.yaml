@@ -15,7 +15,7 @@ jobs:
           find dhall -name '*.dhall' -type f -print0 |
             sort -buz |
             xargs -0 -i sh -xc '
-              dhall freeze --inplace {} &&
+              dhall freeze --all --inplace {} &&
               dhall lint --inplace {}
             '
       - env:

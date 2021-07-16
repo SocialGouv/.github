@@ -1,2 +1,2 @@
 {- renovate: currentValue=master -}
-https://raw.githubusercontent.com/regadas/github-actions-dhall/05817617d18d28839b93a2883e567e87c7967ab3/package.dhall sha256:327d499ebf1ec63e5c3b0b0d5285b78a07be4ad1a941556eb35f67547004545f
+https://raw.githubusercontent.com/regadas/github-actions-dhall/61fb599859095bb2a6e63677c51eb956114271dd/package.dhall sha256:61e7d862f54e9514379feaadbc80a85b7bd870dad5e31e2e83d8b3dd9eda8e1b

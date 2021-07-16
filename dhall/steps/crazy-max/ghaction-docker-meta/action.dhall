@@ -1,5 +1,5 @@
 let GithubActions =
-      ../../../github-actions/package.dhall sha256:327d499ebf1ec63e5c3b0b0d5285b78a07be4ad1a941556eb35f67547004545f
+      ../../../github-actions/package.dhall sha256:61e7d862f54e9514379feaadbc80a85b7bd870dad5e31e2e83d8b3dd9eda8e1b
 
 let Input =
       ./Input.dhall sha256:0f0b7f02193300dd1fb74da365542d2244ad42b5c5b5cbb22968552dfb62fae8

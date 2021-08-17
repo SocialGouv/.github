@@ -4,7 +4,7 @@ let GithubActions =
 
 let login-action =
       ../../steps/docker/login-action/package.dhall
-        sha256:03f7bbf56088a6a39ca8903c15c83adeefa1557e2e3253746f3ea0c546a3b1d8
+        sha256:4649eb17a0aabf4898a100bf185efd0ce7c26026a89f0640811c98bbe5ae27e2
 
 let socialgouv/docker-login =
           login-action.v1

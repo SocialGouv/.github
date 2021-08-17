@@ -4,10 +4,10 @@ let GithubActions =
 
 let login-action =
       ../../steps/docker/login-action/package.dhall
-        sha256:4265475c09a9d28a758ad4ac3f5e46131aa2c9463d8001b87bd52af21ffadc04
+        sha256:03f7bbf56088a6a39ca8903c15c83adeefa1557e2e3253746f3ea0c546a3b1d8
 
 let socialgouv/docker-login =
-          login-action.`v1.8.0`
+          login-action.v1
             login-action.Input::{
             , password = Some "\${{ secrets.GHCR_REGISTRY_TOKEN }}"
             , registry = Some "ghcr.io"
@@ -23,8 +23,7 @@ let __test__foo =
         ===  GithubActions.Step::{
              , `if` = Some "\${{ github.event_name != 'pull_request' }}"
              , name = Some "Login to ghcr.io/socialgouv Registry"
-             , uses = Some
-                 "docker/login-action@f3364599c6aa293cdc2b8391b1b56d0c30e45c8a"
+             , uses = Some "docker/login-action@${login-action.v1/sha}"
              , `with` = Some
                [ { mapKey = "password"
                  , mapValue = "\${{ secrets.GHCR_REGISTRY_TOKEN }}"

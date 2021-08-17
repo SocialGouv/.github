@@ -56,12 +56,8 @@ let __test__step_id =
           , `with` = Some ([] : List { mapKey : Text, mapValue : Text })
           }
 
-let `v1.8.0` =
-    {-
-    This dhall is mapping a fixed version of the docker/login-action
-    https://github.com/docker/login-action/tree/v1.8.0
-    commit/f3364599c6aa293cdc2b8391b1b56d0c30e45c8a
-    -}
-      "f3364599c6aa293cdc2b8391b1b56d0c30e45c8a"
+let {- renovate(github-action): depName=docker/login-action currentValue=v1 -}
+    v1 =
+      "f3364599c6aa293cdc2b8391b1b56d0c30e45c8s"
 
-in  { `v1.8.0` = step `v1.8.0`, step }
+in  { v1 = step v1, v1/sha = v1, step }

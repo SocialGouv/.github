@@ -44,16 +44,8 @@ let __test__step_id =
           , `with` = Some ([] : List { mapKey : Text, mapValue : Text })
           }
 
-let `v1.1.2` =
-    {-
-    This dhall is mapping a fixed version of the docker/setup-buildx-action
-    https://github.com/docker/setup-buildx-action/tree/v1.1.2
-    commit/2a4b53665e15ce7d7049afb11ff1f70ff1610609
-    -}
-      "2a4b53665e15ce7d7049afb11ff1f70ff1610609"
-
 let {- renovate(github-action): depName=docker/setup-buildx-action currentValue=v1 -}
     v1 =
       "2a4b53665e15ce7d7049afb11ff1f70ff1610609"
 
-in  { v1 = step v1, v1/sha = v1, `v1.1.2` = step `v1.1.2`, step }
+in  { v1 = step v1, v1/sha = v1, step }

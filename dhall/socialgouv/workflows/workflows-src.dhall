@@ -1,5 +1,5 @@
 let GithubActions =
-      ../../github-actions/package.dhall sha256:61e7d862f54e9514379feaadbc80a85b7bd870dad5e31e2e83d8b3dd9eda8e1b
+      ../../github-actions/package.dhall sha256:66b276bb67cca4cfcfd1027da45857cc8d53e75ea98433b15dade1e1e1ec22c8
 
 let add-and-commit =
       ../steps/add-and-commit.dhall sha256:15423ba92afda80694de97e1d3100da031180434e1fa546b3aa23d426bb36786

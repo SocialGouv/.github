@@ -56,7 +56,7 @@ ASSEMBLY_LINE_HASH := $(call hash_path,${ASSEMBLY_LINE_SRC})
 #
 #
 
-assembly_line: $(ASSEMBLY_LINE_HASH) .github/workflows/dhall.workflows.yaml
+assembly_line: $(ASSEMBLY_LINE_HASH)
 
 #
 #

@@ -1,34 +1,38 @@
 jobs:
-  workflows-src-to-workflows:
+  make:
     name: Convert to workflows
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
+        if: github.event_name == 'push'
         uses: "actions/checkout@v2"
         with:
           token: "${{ secrets.SOCIALGROOVYBOT_BOTO_PAT }}"
+          ref: ${{ github.event.push.ref }}
+      - name: Checkout
+        if: github.event_name == 'pull_request'
+        uses: "actions/checkout@v2"
+        with:
+          token: "${{ secrets.SOCIALGROOVYBOT_BOTO_PAT }}"
+          ref: ${{ github.event.pull_request.head.ref }}
       - uses: "dhall-lang/setup-dhall@35fa9f606036a9b7138bcbc4d519021fdda7bd5e"
         with:
-          version: '1.38.1'
+          version: "1.39.0"
       - name: Github Actions Dhall To Yaml
         run: |
-          find .github/workflows-src -name '*.dhall' -type f -print0 |
-            sort -buz |
-            xargs -0 -i sh -xc '
-              dhall freeze --inplace {} &&
-              dhall lint --inplace {} &&
-              dhall-to-yaml --file {} --output .github/workflows/$(basename {} .dhall).yaml
-            '
+          mkdir -p .cache
+          make
+      - name: Clean up before commit
+        run: rm -rf .cache bin share
       - env:
           GITHUB_TOKEN: "${{ secrets.SOCIALGROOVYBOT_BOTO_PAT }}"
         name: Commit changes
         uses: "EndBug/add-and-commit@a3adef035a1381dcf888c90b847240e2ddb9e008"
         with:
-          add: ".github/"
           author_email: "${{ secrets.SOCIALGROOVYBOT_EMAIL }}"
           author_name: "${{ secrets.SOCIALGROOVYBOT_NAME }}"
           branch: "${{ steps.comment.outputs.branch }}"
-          message: "chore(:robot:): workflows-src to workflows"
+          message: "chore(:robot:): dhall update"
 name: "🤖 / Dhall Workflows"
 on:
   pull_request:
@@ -36,13 +40,13 @@ on:
       - master
       - main
     paths:
-      - ".github/workflows-src/**"
+      - "dhall/socialgouv/workflows/**"
       - ".github/workflows/@workflows-src.yaml"
   push:
     branches:
       - master
       - main
     paths:
-      - ".github/workflows-src/**"
+      - "dhall/socialgouv/workflows/**"
       - ".github/workflows/@workflows-src.yaml"
   workflow_dispatch: {}

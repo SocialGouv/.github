@@ -18,7 +18,8 @@
   "regexManagers": [
     {
       "fileMatch": ["\\.dhall$"],
-      "datasourceTemplate": "docker",
+      "datasourceTemplate": "github-tags",
+      "versioningTemplate": "docker",
       "matchStrings": [
         "let {- renovate(github-action): depName=(?<depName>[^\\s]+) currentValue=(?<currentValue>[^\\s]+)? -}\\s.+\\s*=\\s*\"(?<currentDigest>.+)\"\\s"
       ]

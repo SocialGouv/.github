@@ -65,7 +65,8 @@ assembly_line: $(ASSEMBLY_LINE_HASH) .github/workflows/dhall.workflows.yaml
 define make_assembly_targets
 $(call hash_path,$(1)) : $(1) $(call hash_path,$(call get_dependencies,$(1)))
 	$(DHALL) freeze --all --inplace $$<
-	$(DHALL) lint --inplace $$<
+	$(DHALL) format $$<
+	$(DHALL) lint $$<
 	$@mkdir -p $$(shell dirname "$$@")
 	$(DHALL) hash --file $$< > $$@
 endef

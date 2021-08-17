@@ -1,8 +1,10 @@
 let GithubActions =
-      ../../github-actions/package.dhall sha256:66b276bb67cca4cfcfd1027da45857cc8d53e75ea98433b15dade1e1e1ec22c8
+      ../../github-actions/package.dhall
+        sha256:66b276bb67cca4cfcfd1027da45857cc8d53e75ea98433b15dade1e1e1ec22c8
 
 let build-push-action =
-      ../../steps/docker/build-push-action/package.dhall sha256:fc04eef536f027a5796f537351756e62c25355ec18a4b0354f93a8b92d3b7e43
+      ../../steps/docker/build-push-action/package.dhall
+        sha256:fc04eef536f027a5796f537351756e62c25355ec18a4b0354f93a8b92d3b7e43
 
 let socialgouv/docker-build-push =
       λ ( args

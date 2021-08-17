@@ -1,11 +1,14 @@
 let GithubActions =
-      ../../github-actions/package.dhall sha256:66b276bb67cca4cfcfd1027da45857cc8d53e75ea98433b15dade1e1e1ec22c8
+      ../../github-actions/package.dhall
+        sha256:66b276bb67cca4cfcfd1027da45857cc8d53e75ea98433b15dade1e1e1ec22c8
 
 let add-and-commit =
-      ../steps/add-and-commit.dhall sha256:15423ba92afda80694de97e1d3100da031180434e1fa546b3aa23d426bb36786
+      ../steps/add-and-commit.dhall
+        sha256:15423ba92afda80694de97e1d3100da031180434e1fa546b3aa23d426bb36786
 
 let dhall-lang/setup-dhall =
-      ../../steps/dhall-lang/setup-dhall/package.dhall sha256:2bcd97c0d170aecede86ef3294018eb0f36a87a41d0503ec950ce7112967f8b0
+      ../../steps/dhall-lang/setup-dhall/package.dhall
+        sha256:2bcd97c0d170aecede86ef3294018eb0f36a87a41d0503ec950ce7112967f8b0
 
 let name = "🤖 / Dhall Workflows"
 
@@ -18,7 +21,7 @@ let on =
           , ".github/workflows/@workflows-src.yaml"
           ]
         }
-      , pull_request = Some GithubActions.Push::{
+      , pull_request = Some GithubActions.PullRequest::{
         , branches = Some [ "master", "main" ]
         , paths = Some
           [ ".github/workflows-src/**"

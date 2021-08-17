@@ -9,14 +9,15 @@ jobs:
           token: "${{ secrets.SOCIALGROOVYBOT_BOTO_PAT }}"
       - uses: "dhall-lang/setup-dhall@35fa9f606036a9b7138bcbc4d519021fdda7bd5e"
         with:
-          version: '1.38.1'
+          version: "1.38.1"
       - name: Dhall Freeze
         run: |
           find dhall -name '*.dhall' -type f -print0 |
             sort -buz |
             xargs -0 -i sh -xc '
               dhall freeze --all --transitive {} &&
-              dhall lint --inplace {}
+              dhall format {} &&
+              dhall lint {}
             '
       - env:
           GITHUB_TOKEN: "${{ secrets.SOCIALGROOVYBOT_BOTO_PAT }}"

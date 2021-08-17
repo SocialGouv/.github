@@ -3,7 +3,7 @@
       sha256:39e1bda1b6947c0e4035dd08e5b2a147de4b96f18ea251213db9edd7018dc098
 , docker-meta =
     ./steps/docker-meta.dhall
-      sha256:eb33151d23c230a302df1e1c3e885af23d5715558e8d9e7b215aa35eeac61f0e
+      sha256:c324fae0f39bc59c40d3eb857be04101ff200b6c82207c7fa4f941df37084ada
 , docker-buildx =
     ./steps/docker-buildx.dhall
       sha256:40cd835f0c5d748ac6ba97b2a420fbf6a2f33511565f7dcc3d3788f93db96a5b

@@ -4,11 +4,11 @@ let GithubActions =
 
 let ghaction-docker-meta =
       ../../steps/crazy-max/ghaction-docker-meta/package.dhall
-        sha256:23fdcc9226b0665b11e9a295b96d9abf991404142069a004b6f124fd0de2fc7a
+        sha256:4d5b2f2d2baabe96699a6a4b72b45a3abeb41379274b7426734597bbfa2f39d8
 
 let socialgouv/docker-meta =
       λ(args : { image_name : Text }) →
-        ghaction-docker-meta.`v2.3.0`
+        ghaction-docker-meta.v3
           ghaction-docker-meta.Input::{
           , images = "ghcr.io/socialgouv/docker/${args.image_name}"
           , labels = Some
@@ -32,7 +32,7 @@ let __test__foo =
       :   socialgouv/docker-meta { image_name = "foo" }
         ≡ GithubActions.Step::{
           , uses = Some
-              "crazy-max/ghaction-docker-meta@2e1a5c7fa42123697f82d479b551a1bbdb1bef88"
+              "crazy-max/ghaction-docker-meta@${ghaction-docker-meta.v3/sha}"
           , `with` = Some
             [ { mapKey = "labels"
               , mapValue =

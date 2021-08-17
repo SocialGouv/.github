@@ -4,7 +4,7 @@ let GithubActions =
 
 let Input =
       ./Input.dhall
-        sha256:0f0b7f02193300dd1fb74da365542d2244ad42b5c5b5cbb22968552dfb62fae8
+        sha256:13389a7e95be60f9244ea39600f8fd59b44ba5883c5e9458535e972483a000a7
 
 let utils =
       ../../utils.dhall
@@ -56,12 +56,8 @@ let __test__step_id =
           , `with` = Some (toMap { images = "ghcr.io/foo/bar" })
           }
 
-let `v2.3.0` =
-    {-
-    This dhall is mapping a fixed version of the crazy-max/ghaction-docker-meta
-    https://github.com/crazy-max/ghaction-docker-meta/tree/v2.3.0
-    commit/2e1a5c7fa42123697f82d479b551a1bbdb1bef88
-    -}
-      "2e1a5c7fa42123697f82d479b551a1bbdb1bef88"
+let {- renovate(github-action): depName=docker/login-action currentValue=v3 -}
+    v3 =
+      "f6efe56d565add159ad605568120f5b22712a870"
 
-in  { `v2.3.0` = step `v2.3.0`, step }
+in  { v3 = step v3, v3/sha = v3, step }

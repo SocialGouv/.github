@@ -12,5 +12,5 @@
       sha256:fe2771a065191fe3787d9cfe309d7ab031366ac6d97bfef51719afb9cf534f46
 , docker-build-push =
     ./steps/docker-build-push.dhall
-      sha256:c48eec89dc88315e841ece1fc7c215a843b3b13ee366a05a4b83e89d56818941
+      sha256:c534bd99f59bc5cf6bb82e882a31fff25d49f52df541495f2f90f85025781b32
 }

@@ -18,8 +18,8 @@ let socialgouv/docker-build-push =
             build-push-action.Input::{
             , builder = Some
                 "\${{ steps.${args.docker_buildx_step_id}.outputs.name }}"
-            , cache-from = Some "type=local,src=${args.cache_path}"
-            , cache-to = Some "type=local,dest=${args.cache_path}"
+            , cache-from = Some "type=gha"
+            , cache-to = Some "type=gha,mode=max"
             , context = Some "./${args.context}"
             , labels = Some
                 "\${{ steps.${args.docker_meta_step_id}.outputs.labels }}"
@@ -45,12 +45,8 @@ let __test__foo =
             [ { mapKey = "builder"
               , mapValue = "\${{ steps.docker_buildx.outputs.name }}"
               }
-            , { mapKey = "cache-from"
-              , mapValue = "type=local,src=/tmp/.buildx-cache"
-              }
-            , { mapKey = "cache-to"
-              , mapValue = "type=local,dest=/tmp/.buildx-cache"
-              }
+            , { mapKey = "cache-from", mapValue = "type=gha" }
+            , { mapKey = "cache-to", mapValue = "type=gha,mode=max" }
             , { mapKey = "context", mapValue = "./foo" }
             , { mapKey = "labels"
               , mapValue = "\${{ steps.docker_meta.outputs.labels }}"

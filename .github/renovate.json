@@ -14,5 +14,13 @@
         "semanticCommitType": "fix"
       }
     }
+  ],
+  "regexManagers": [
+    {
+      "fileMatch": ["\\.dhall$"],
+      "matchStrings": [
+        "let {- renovate(github-action): depName=(?<depName>[^\\s]+) currentValue=(?<currentValue>[^\\s]+)? -}\\s.+\\s*=\\s*\"(?<currentDigest>.+)\"\\s"
+      ]
+    }
   ]
 }

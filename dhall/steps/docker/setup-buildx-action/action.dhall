@@ -52,7 +52,7 @@ let `v1.1.2` =
     -}
       "2a4b53665e15ce7d7049afb11ff1f70ff1610609"
 
-let {- renovate(digest): datasource=github-tags depName=docker/setup-buildx-action currentValue=v1 -}
+let {- renovate(github-action): depName=docker/setup-buildx-action currentValue=v1 -}
     v1 =
       "2a4b53665e15ce7d7049afb11ff1f70ff1610609"
 

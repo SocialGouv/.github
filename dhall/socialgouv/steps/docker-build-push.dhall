@@ -4,7 +4,7 @@ let GithubActions =
 
 let build-push-action =
       ../../steps/docker/build-push-action/package.dhall
-        sha256:fc04eef536f027a5796f537351756e62c25355ec18a4b0354f93a8b92d3b7e43
+        sha256:6459561f20b37d395cbb1170ad5343ed9cd146a03e1c2ffa75d68012f1c2d8b4
 
 let socialgouv/docker-build-push =
       λ ( args
@@ -13,7 +13,7 @@ let socialgouv/docker-build-push =
           , docker_meta_step_id : Text
           }
         ) →
-          build-push-action.`v2.4.0`
+          build-push-action.v2
             build-push-action.Input::{
             , builder = Some
                 "\${{ steps.${args.docker_buildx_step_id}.outputs.name }}"
@@ -37,8 +37,7 @@ let __test__foo =
             }
         ≡ GithubActions.Step::{
           , name = Some "Push"
-          , uses = Some
-              "docker/build-push-action@e1b7f96249f2e4c8e4ac1519b9608c0d48944a1f"
+          , uses = Some "docker/build-push-action@${build-push-action.v2/sha}"
           , `with` = Some
             [ { mapKey = "builder"
               , mapValue = "\${{ steps.docker_buildx.outputs.name }}"

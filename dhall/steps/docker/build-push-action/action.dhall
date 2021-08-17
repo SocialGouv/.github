@@ -44,12 +44,8 @@ let __test__step_id =
           , `with` = Some ([] : List { mapKey : Text, mapValue : Text })
           }
 
-let `v2.4.0` =
-    {-
-    This dhall is mapping a fixed version of the docker/build-push-action
-    https://github.com/docker/build-push-action/tree/v2.4.0
-    commit/e1b7f96249f2e4c8e4ac1519b9608c0d48944a1f
-    -}
+let {- renovate(github-action): depName=docker/build-push-action currentValue=v2 -}
+    v2 =
       "e1b7f96249f2e4c8e4ac1519b9608c0d48944a1f"
 
-in  { `v2.4.0` = step `v2.4.0`, step }
+in  { v2 = step v2, v2/sha = v2, step }

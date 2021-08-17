@@ -4,7 +4,7 @@ let GithubActions =
 
 let {- renovate(github-action): depName=EndBug/add-and-commit currentValue=v7 -}
     v7 =
-      "a3adef035a1381dcf888c90b847240e2ddb9e008"
+      "2bdc0a61a03738a1d1bda24d566ad0dbe3083d87"
 
 let add-and-commit
     : ∀(args : { add : Text, message : Text }) → GithubActions.Step.Type

@@ -56,4 +56,4 @@ let {- renovate(github-action): depName=docker/setup-buildx-action currentValue=
     v1 =
       "2a4b53665e15ce7d7049afb11ff1f70ff1610609"
 
-in  { v1 = step v1, `v1.1.2` = step `v1.1.2`, step }
+in  { v1 = step v1, v1/sha = v1, `v1.1.2` = step `v1.1.2`, step }

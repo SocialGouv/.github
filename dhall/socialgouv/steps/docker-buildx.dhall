@@ -4,10 +4,10 @@ let GithubActions =
 
 let setup-buildx-action =
       ../../steps/docker/setup-buildx-action/package.dhall
-        sha256:196e79b7d75787ab759b51573054ab536685ec8d25a57e90edb9766ba204017b
+        sha256:442526ff7218423d46fdde750ce837b18737bb313d0beff5f76b0eeea74cd141
 
 let socialgouv/docker-buildx =
-          setup-buildx-action.`v1.1.2` setup-buildx-action.Input::{=}
+          setup-buildx-action.v1 setup-buildx-action.Input::{=}
       //  { name = Some "Set up Docker Buildx" }
 
 let __test__foo =
@@ -16,7 +16,7 @@ let __test__foo =
         ===  GithubActions.Step::{
              , name = Some "Set up Docker Buildx"
              , uses = Some
-                 "docker/setup-buildx-action@2a4b53665e15ce7d7049afb11ff1f70ff1610609"
+                 "docker/setup-buildx-action@${setup-buildx-action.v1/sha}"
              , `with` = Some ([] : List { mapKey : Text, mapValue : Text })
              }
 

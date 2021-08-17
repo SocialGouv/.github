@@ -40,13 +40,13 @@ on:
       - master
       - main
     paths:
-      - "dhall/socialgouv/workflows/**"
+      - "dhall/**"
       - ".github/workflows/@workflows-src.yaml"
   push:
     branches:
       - master
       - main
     paths:
-      - "dhall/socialgouv/workflows/**"
+      - "dhall/**"
       - ".github/workflows/@workflows-src.yaml"
   workflow_dispatch: {}

@@ -8,8 +8,7 @@ let build-push-action =
 
 let socialgouv/docker-build-push =
       λ ( args
-        : { cache_path : Text
-          , context : Text
+        : { context : Text
           , docker_buildx_step_id : Text
           , docker_meta_step_id : Text
           }
@@ -32,8 +31,7 @@ let socialgouv/docker-build-push =
 let __test__foo =
         assert
       :   socialgouv/docker-build-push
-            { cache_path = "/tmp/.buildx-cache"
-            , context = "foo"
+            { context = "foo"
             , docker_buildx_step_id = "docker_buildx"
             , docker_meta_step_id = "docker_meta"
             }

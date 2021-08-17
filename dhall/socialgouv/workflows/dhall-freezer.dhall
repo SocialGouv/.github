@@ -35,7 +35,7 @@ let checkout =
             (toMap { token = "\${{ secrets.SOCIALGROOVYBOT_BOTO_PAT }}" })
         }
 
-let dhall_version = "1.38.1"
+let dhall_version = "1.39.0"
 
 let setup-dhall =
       dhall-lang/setup-dhall.`v4.2.0`

@@ -52,4 +52,8 @@ let `v1.1.2` =
     -}
       "2a4b53665e15ce7d7049afb11ff1f70ff1610609"
 
-in  { `v1.1.2` = step `v1.1.2`, step }
+let {- renovate(digest): datasource=github-tags depName=docker/setup-buildx-action currentValue=v1 -}
+    v1 =
+      "2a4b53665e15ce7d7049afb11ff1f70ff1610609"
+
+in  { v1 = step v1, `v1.1.2` = step `v1.1.2`, step }

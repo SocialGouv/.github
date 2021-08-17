@@ -4,7 +4,7 @@ let GithubActions =
 
 let build-push-action =
       ../../steps/docker/build-push-action/package.dhall
-        sha256:6459561f20b37d395cbb1170ad5343ed9cd146a03e1c2ffa75d68012f1c2d8b4
+        sha256:a1bf51b237fa4de8fd08dc9ae57d946182665b6cf726526ed11c9d864428c64f
 
 let socialgouv/docker-build-push =
       λ ( args

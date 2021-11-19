@@ -1,6 +1,6 @@
 FROM ghcr.io/socialgouv/docker/dhall:6.60.0@sha256:98923ff211d239cb64ee7db19ab2b7c04b8bacb11c7b1f1f52bd7f2e521fb4d8 as dhall_image
 
-FROM alpine:3.14
+FROM alpine:3.15
 
 RUN apk add --update --no-cache \
   bash=~5

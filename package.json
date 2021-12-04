@@ -17,6 +17,6 @@
   },
   "homepage": "https://github.com/SocialGouv/.github#readme",
   "devDependencies": {
-    "prettier": "^2.5.0"
+    "prettier": "^2.5.1"
   }
 }

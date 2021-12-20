@@ -9,7 +9,7 @@
       sha256:8eb9033a64676d10eba60d5ba270bae17f4ff3d2471c9294758be3ce76ec07b0
 , docker-login =
     ./steps/docker-login.dhall
-      sha256:d98eae1a328d55f1faa911c1bc7990b84fd5c6f85735116192470e047b29a1d8
+      sha256:be3fde30de9b7bdce0ab2f9d0a3ece32fe21b8a5b3170cf415f04a25969c3890
 , docker-build-push =
     ./steps/docker-build-push.dhall
       sha256:8bd88aba9d1d6687737e6f1e38e14bf2d95be03ed1c94b21cf26b0ba18f81311

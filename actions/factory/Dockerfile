@@ -1,4 +1,4 @@
-FROM ghcr.io/socialgouv/docker/dhall:6.69.1@sha256:24e4d9e787eb9d371d517c6456c1cba2bdca68508516209f887d9769be47c5e7 as dhall_image
+FROM ghcr.io/socialgouv/docker/dhall:6.70.0@sha256:7126585741cd73c454fa4ce450d377d85d60c8a4555686cb32741324be58c452 as dhall_image
 
 FROM alpine:3.15
 

@@ -1,6 +1,6 @@
 let GithubActions =
       ../../github-actions/package.dhall
-        sha256:66b276bb67cca4cfcfd1027da45857cc8d53e75ea98433b15dade1e1e1ec22c8
+        sha256:53da2310a2e009556455a73684b997c3bd53192637ac3c77562c30e3815f5f23
 
 let setup-dhall =
       ../steps/setup-dhall.dhall

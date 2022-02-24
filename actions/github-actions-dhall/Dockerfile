@@ -1,4 +1,4 @@
-FROM dhallhaskell/dhall:1.41.0@sha256:e2389cd1bde2c421ecf3b0cfc60f9679f3d9fe3823917f311549eaeccf61d7ea as dhall_image
+FROM dhallhaskell/dhall:1.41.1@sha256:45cc2b3fc00f11be3055541d84b3764d9d68a9ebc75436229ad23ceeaee419d2 as dhall_image
 
 FROM alpine:3.15
 

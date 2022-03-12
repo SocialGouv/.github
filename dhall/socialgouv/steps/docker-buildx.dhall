@@ -4,7 +4,7 @@ let GithubActions =
 
 let setup-buildx-action =
       ../../steps/docker/setup-buildx-action/package.dhall
-        sha256:d40d4d96aa78c5bd874770386d9dd817379bf98d371e4b36de383c04c5777790
+        sha256:d8028126cab54e33fb9fcba453aef7076b6c860b714eece26ae49d92b4557dcf
 
 let socialgouv/docker-buildx =
           setup-buildx-action.v1 setup-buildx-action.Input::{=}

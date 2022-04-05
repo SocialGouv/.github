@@ -21,7 +21,7 @@ jobs:
       - env:
           GITHUB_TOKEN: "${{ secrets.SOCIALGROOVYBOT_BOTO_PAT }}"
         name: Commit changes
-        uses: EndBug/add-and-commit@34260c9d7cb4e7ed60f4502ec2e0d9bcacca43c1
+        uses: EndBug/add-and-commit@8b817249e9bc4aac26a3dbf27ab69f410c1baf19
         with:
           add: ".github/workflows/"
           author_email: "${{ secrets.SOCIALGROOVYBOT_EMAIL }}"

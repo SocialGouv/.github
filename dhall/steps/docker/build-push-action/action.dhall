@@ -46,6 +46,6 @@ let __test__step_id =
 
 let {- renovate(github-action): depName=docker/build-push-action currentValue=v2 -}
     v2 =
-      "1bc1040caef9e604eb543693ba89b5bf4fc80935"
+      "ac9327eae2b366085ac7f6a2d02df8aa8ead720a"
 
 in  { v2 = step v2, v2/sha = v2, step }

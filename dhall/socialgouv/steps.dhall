@@ -6,7 +6,7 @@
       sha256:c324fae0f39bc59c40d3eb857be04101ff200b6c82207c7fa4f941df37084ada
 , docker-buildx =
     ./steps/docker-buildx.dhall
-      sha256:8eb9033a64676d10eba60d5ba270bae17f4ff3d2471c9294758be3ce76ec07b0
+      sha256:13b9b0df44935e7e4ec709601f16759060e6e3728b4e0d64a805b786b65ee179
 , docker-login =
     ./steps/docker-login.dhall
       sha256:d98eae1a328d55f1faa911c1bc7990b84fd5c6f85735116192470e047b29a1d8

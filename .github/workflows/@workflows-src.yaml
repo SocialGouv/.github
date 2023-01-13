@@ -15,7 +15,7 @@ jobs:
         with:
           token: "${{ secrets.SOCIALGROOVYBOT_BOTO_PAT }}"
           ref: ${{ github.event.pull_request.head.ref }}
-      - uses: "dhall-lang/setup-dhall@35fa9f606036a9b7138bcbc4d519021fdda7bd5e"
+      - uses: "dhall-lang/setup-dhall@fedd8695a49579db7eca165c06ce47f62f7d5248"
         with:
           version: "1.39.0"
       - name: Github Actions Dhall To Yaml

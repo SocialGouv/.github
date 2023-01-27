@@ -4,7 +4,7 @@ let GithubActions =
 
 let {- renovate(github-action): depName=dhall-lang/setup-dhall currentValue=v4 -}
     v4 =
-      "35fa9f606036a9b7138bcbc4d519021fdda7bd5e"
+      "fedd8695a49579db7eca165c06ce47f62f7d5248"
 
 let {- renovate: datasource=gitlab-tags depName=dhall-lang/dhall-haskell -}
     DHALL_VERSION =

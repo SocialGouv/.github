@@ -4,7 +4,7 @@ let GithubActions =
 
 let setup-dhall =
       ../steps/setup-dhall.dhall
-        sha256:ad5a9d2b9f097127714cb086d71c0464ce25d9aea09569ae14433963b8f7d245
+        sha256:7beb2abf3cc6d79a6225145d0acc5bd044a9508b9469b0d4df2f6a34119fcfd9
 
 let job =
       λ(args : { working-directory : Text, run : Text }) →

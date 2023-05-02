@@ -1,0 +1,6 @@
+{
+  "name": "🚀 Production",
+  "description": "Deploy to Production",
+  "iconName": "marianne",
+  "categories": ["CI/CD"]
+}

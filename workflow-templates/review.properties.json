@@ -1,0 +1,6 @@
+{
+  "name": "👓 Review Auto",
+  "description": "Deploy review environment automatically on conventioned branches",
+  "iconName": "marianne",
+  "categories": ["CI/CD"]
+}

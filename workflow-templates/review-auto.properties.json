@@ -1,0 +1,6 @@
+{
+  "name": "👀 Review",
+  "description": "Deploy review environment on demand",
+  "iconName": "marianne",
+  "categories": ["CI/CD"]
+}

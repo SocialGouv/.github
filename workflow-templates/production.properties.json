@@ -2,5 +2,5 @@
   "name": "😎 PreProd",
   "description": "Deploy Pre-Production environment",
   "iconName": "marianne",
-  "categories": ["CI/CD"]
+  "categories": ["Deployment"]
 }

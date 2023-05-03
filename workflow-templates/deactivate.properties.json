@@ -1,0 +1,6 @@
+{
+  "name": "♻️ Deactivate",
+  "description": "Clean review deployment environment on merging and branch deletions",
+  "iconName": "marianne",
+  "categories": ["Deployment"]
+}

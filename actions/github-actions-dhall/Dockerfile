@@ -1,6 +1,6 @@
 FROM dhallhaskell/dhall:1.42.0@sha256:7594b8b8119c4ead4b09eace76bae830be448a4acfbf9a36fabdeca62fb17191 as dhall_image
 
-FROM alpine:3.17
+FROM alpine:3.18
 
 RUN apk add --update --no-cache \
   bash=~5 \

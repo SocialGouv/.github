@@ -1,10 +1,10 @@
 let GithubActions =
       ../../github-actions/package.dhall
-        sha256:66b276bb67cca4cfcfd1027da45857cc8d53e75ea98433b15dade1e1e1ec22c8
+        sha256:689f05f7e4f9e6355b8ce935ca0568b1a1fdbbd746e0bc4e2e5d8f238cfa4358
 
 let ghaction-docker-meta =
       ../../steps/crazy-max/ghaction-docker-meta/package.dhall
-        sha256:4d5b2f2d2baabe96699a6a4b72b45a3abeb41379274b7426734597bbfa2f39d8
+        sha256:27856447b9a3399788f146b0aadb7475b64cffacd6cdeb6499baf21f989a9c53
 
 let socialgouv/docker-meta =
       λ(args : { image_name : Text }) →

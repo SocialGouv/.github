@@ -1,10 +1,10 @@
 let GithubActions =
       ../../github-actions/package.dhall
-        sha256:66b276bb67cca4cfcfd1027da45857cc8d53e75ea98433b15dade1e1e1ec22c8
+        sha256:689f05f7e4f9e6355b8ce935ca0568b1a1fdbbd746e0bc4e2e5d8f238cfa4358
 
 let login-action =
       ../../steps/docker/login-action/package.dhall
-        sha256:4649eb17a0aabf4898a100bf185efd0ce7c26026a89f0640811c98bbe5ae27e2
+        sha256:07a911dfd21294a4ac10100eac43db74ecc7a07d3b60f88bb9ece56f688f7b26
 
 let socialgouv/docker-login =
           login-action.v1

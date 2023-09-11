@@ -56,8 +56,8 @@ let __test__step_id =
           , `with` = Some ([] : List { mapKey : Text, mapValue : Text })
           }
 
-let {- renovate(github-action): depName=docker/login-action currentValue=v1 -}
-    v1 =
-      "f054a8b539a109f9f41c372932f1ae047eff08c9"
+let {- renovate(github-action): depName=docker/login-action currentValue=v2 -}
+    v2 =
+      "465a07811f14bebb1938fbed4728c6a1ff8901fc"
 
 in  { v1 = step v1, v1/sha = v1, step }

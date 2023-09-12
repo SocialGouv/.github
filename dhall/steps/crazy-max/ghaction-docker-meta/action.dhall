@@ -58,6 +58,6 @@ let __test__step_id =
 
 let {- renovate(github-action): depName=docker/login-action currentValue=v3 -}
     v3 =
-      "f6efe56d565add159ad605568120f5b22712a870"
+      "343f7c4344506bcbf9b4de18042ae17996df046d"
 
 in  { v3 = step v3, v3/sha = v3, step }

@@ -5,13 +5,13 @@ jobs:
     steps:
       - name: Checkout
         if: github.event_name == 'push'
-        uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
         with:
           token: "${{ secrets.SOCIALGROOVYBOT_BOTO_PAT }}"
           ref: ${{ github.event.push.ref }}
       - name: Checkout
         if: github.event_name == 'pull_request'
-        uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
         with:
           token: "${{ secrets.SOCIALGROOVYBOT_BOTO_PAT }}"
           ref: ${{ github.event.pull_request.head.ref }}

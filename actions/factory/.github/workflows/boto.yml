@@ -105,7 +105,7 @@ jobs:
           message: "chore(:robot:): ${{ needs.Act.outputs.TRAILING_LINE }}"
 
       - name: Add success reaction
-        uses: peter-evans/create-or-update-comment@v2
+        uses: peter-evans/create-or-update-comment@v4
         with:
           token: ${{ secrets.SOCIALGROOVYBOT_BOTO_PAT }}
           comment-id: ${{ needs.Act.outputs.RUN_COMMENT_ID }}
@@ -113,7 +113,7 @@ jobs:
 
       - name: Add failure reaction
         if: failure()
-        uses: peter-evans/create-or-update-comment@v2
+        uses: peter-evans/create-or-update-comment@v4
         with:
           token: ${{ secrets.SOCIALGROOVYBOT_BOTO_PAT }}
           comment-id: ${{ needs.Act.outputs.RUN_COMMENT_ID }}

@@ -4,7 +4,7 @@ let GithubActions =
 
 let ghaction-docker-meta =
       ../../steps/crazy-max/ghaction-docker-meta/package.dhall
-        sha256:4d5b2f2d2baabe96699a6a4b72b45a3abeb41379274b7426734597bbfa2f39d8
+        sha256:6c7a286a39a8272655c15e5d32f1edc731cf5e9ba2592242585d0653d04c32a0
 
 let socialgouv/docker-meta =
       λ(args : { image_name : Text }) →

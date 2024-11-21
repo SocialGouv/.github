@@ -1,10 +1,10 @@
 let GithubActions =
       ../../github-actions/package.dhall
-        sha256:66b276bb67cca4cfcfd1027da45857cc8d53e75ea98433b15dade1e1e1ec22c8
+        sha256:689f05f7e4f9e6355b8ce935ca0568b1a1fdbbd746e0bc4e2e5d8f238cfa4358
 
 let setup-buildx-action =
       ../../steps/docker/setup-buildx-action/package.dhall
-        sha256:d40d4d96aa78c5bd874770386d9dd817379bf98d371e4b36de383c04c5777790
+        sha256:79d7ef5351725ee44cc8b8c214d6daacd40a5c5e8f902853834eb222fd155ff6
 
 let socialgouv/docker-buildx =
           setup-buildx-action.v1 setup-buildx-action.Input::{=}

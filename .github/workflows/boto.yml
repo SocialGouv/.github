@@ -3,6 +3,9 @@ name: Boto
 on:
   - issue_comment
 
+permissions:
+  id-token: write  # Required for OIDC token generation
+
 jobs:
   Act:
     if: ${{ github.event.issue.pull_request }}
@@ -33,6 +36,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Get GitHub App Token
+        id: token
+        uses: SocialGouv/token-bureau@main
+        with:
+          token-bureau-url: http://token-bureau.fabrique.social.gouv.fr
+          audience: socialgouv
+
       - name: Set up Node.js 14.x
         uses: actions/setup-node@v2-beta
         with:
@@ -52,7 +62,7 @@ jobs:
       - name: Checkout upstream repo
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
         with:
-          token: ${{ secrets.SOCIALGROOVYBOT_BOTO_PAT }}
+          token: ${{ steps.token.outputs.token }}
           ref: ${{ steps.comment.outputs.branch }}
 
       - name: Get yarn cache directory path
@@ -97,7 +107,7 @@ jobs:
       - uses: EndBug/add-and-commit@v7
         env:
           HUSKY_SKIP_HOOKS: "true"
-          GITHUB_TOKEN: ${{ secrets.SOCIALGROOVYBOT_BOTO_PAT }}
+          GITHUB_TOKEN: ${{ steps.token.outputs.token }}
         with:
           author_email: ${{ secrets.SOCIALGROOVYBOT_EMAIL }}
           author_name: ${{ secrets.SOCIALGROOVYBOT_NAME }}
@@ -107,7 +117,7 @@ jobs:
       - name: Add success reaction
         uses: peter-evans/create-or-update-comment@v4
         with:
-          token: ${{ secrets.SOCIALGROOVYBOT_BOTO_PAT }}
+          token: ${{ steps.token.outputs.token }}
           comment-id: ${{ needs.Act.outputs.RUN_COMMENT_ID }}
           reaction-type: "+1"
 
@@ -115,6 +125,6 @@ jobs:
         if: failure()
         uses: peter-evans/create-or-update-comment@v4
         with:
-          token: ${{ secrets.SOCIALGROOVYBOT_BOTO_PAT }}
+          token: ${{ steps.token.outputs.token }}
           comment-id: ${{ needs.Act.outputs.RUN_COMMENT_ID }}
           reaction-type: "-1"

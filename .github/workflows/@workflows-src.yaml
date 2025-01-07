@@ -1,19 +1,28 @@
+permissions:
+  id-token: write  # Required for OIDC token generation
+
 jobs:
   make:
     name: Convert to workflows
     runs-on: ubuntu-latest
     steps:
+      - name: Get GitHub App Token
+        id: token
+        uses: SocialGouv/token-bureau@main
+        with:
+          token-bureau-url: http://token-bureau.fabrique.social.gouv.fr
+          audience: socialgouv
       - name: Checkout
         if: github.event_name == 'push'
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
         with:
-          token: "${{ secrets.SOCIALGROOVYBOT_BOTO_PAT }}"
+          token: ${{ steps.token.outputs.token }}
           ref: ${{ github.event.push.ref }}
       - name: Checkout
         if: github.event_name == 'pull_request'
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
         with:
-          token: "${{ secrets.SOCIALGROOVYBOT_BOTO_PAT }}"
+          token: ${{ steps.token.outputs.token }}
           ref: ${{ github.event.pull_request.head.ref }}
       - uses: "dhall-lang/setup-dhall@fedd8695a49579db7eca165c06ce47f62f7d5248"
         with:
@@ -25,7 +34,7 @@ jobs:
       - name: Clean up before commit
         run: rm -rf .cache bin share
       - env:
-          GITHUB_TOKEN: "${{ secrets.SOCIALGROOVYBOT_BOTO_PAT }}"
+          GITHUB_TOKEN: ${{ steps.token.outputs.token }}
         name: Commit changes
         uses: EndBug/add-and-commit@af39be11779239242ac2d3e47148221973246379
         with:

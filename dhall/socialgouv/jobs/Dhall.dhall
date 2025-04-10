@@ -1,10 +1,10 @@
 let GithubActions =
       ../../github-actions/package.dhall
-        sha256:66b276bb67cca4cfcfd1027da45857cc8d53e75ea98433b15dade1e1e1ec22c8
+        sha256:689f05f7e4f9e6355b8ce935ca0568b1a1fdbbd746e0bc4e2e5d8f238cfa4358
 
 let setup-dhall =
       ../steps/setup-dhall.dhall
-        sha256:ad5a9d2b9f097127714cb086d71c0464ce25d9aea09569ae14433963b8f7d245
+        sha256:eb2e365f0dd320c295ed255b0321a088287d0e971167b53e684203a2a4c32d0e
 
 let job =
       λ(args : { working-directory : Text, run : Text }) →

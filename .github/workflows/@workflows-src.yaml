@@ -36,7 +36,7 @@ jobs:
       - env:
           GITHUB_TOKEN: ${{ steps.token.outputs.token }}
         name: Commit changes
-        uses: EndBug/add-and-commit@af39be11779239242ac2d3e47148221973246379
+        uses: EndBug/add-and-commit@60a33511cbe7c5cc6ae8efea33cea26d86d3d028
         with:
           author_email: "${{ secrets.SOCIALGROOVYBOT_EMAIL }}"
           author_name: "${{ secrets.SOCIALGROOVYBOT_NAME }}"

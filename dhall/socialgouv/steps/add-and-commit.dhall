@@ -2,9 +2,9 @@ let GithubActions =
       ../../github-actions/package.dhall
         sha256:66b276bb67cca4cfcfd1027da45857cc8d53e75ea98433b15dade1e1e1ec22c8
 
-let {- renovate(github-action): depName=EndBug/add-and-commit currentValue=v7 -}
-    v7 =
-      "8c12ff729a98cfbcd3fe38b49f55eceb98a5ec02"
+let {- renovate(github-action): depName=EndBug/add-and-commit currentValue=v9 -}
+    v9 =
+      "a94899bca583c204427a224a7af87c02f9b325d5"
 
 let add-and-commit
     : ∀(args : { add : Text, message : Text }) → GithubActions.Step.Type
